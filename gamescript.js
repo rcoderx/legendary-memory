@@ -90,7 +90,7 @@ window.requestAnimationFrame(main); // Start the game loop
 
 // Start and Restart Button Event Listeners
 startButton.addEventListener('click', function() {
-    gameInProgress = true;
+    gameInProgress = false;
     startButton.style.display = 'none'; // Hide Start button
     backgroundMusic.play(); // Play the background music
     window.requestAnimationFrame(main);
@@ -221,8 +221,11 @@ function didGameEnd() {
 function handleGameOver() {
     gameOverSound.play();
     backgroundMusic.pause();
+    restartButton.style.display = 'block'; // Show Restart button
+    gameInProgress = false;
     updateScoreAndLives();
 }
+
 function updateScoreAndLives() {
     const walletAddress = localStorage.getItem('walletAddress');
     
