@@ -81,25 +81,33 @@ function handleTwitterShare() {
 
 
 function submitTwitterLink() {
-    try {
-        console.log("submitTwitterLink called");
+    console.log("submitTwitterLink called");
     const twitterLink = document.getElementById('twitterLinkInput').value;
     if (verifyTwitterLink(twitterLink)) {
-        // Send request to server to update lives
+        // Send request to server to update lives by adding 10
         fetch('https://psychic-chainsaw-production.up.railway.app/updateLives', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ address: localStorage.getItem('walletAddress'), lives: 10 })
-        }).then(() => {
+            body: JSON.stringify({ address: localStorage.getItem('walletAddress'), livesChange: 10 })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update lives');
+            }
+            return response.json();
+        })
+        .then(data => {
             alert('Lives updated successfully');
-        }).catch(err => console.error('Error updating lives:', err));
+            document.getElementById('livesCount').innerText = data.lives; // Update lives display in UI
+            // Optionally disable the submit button
+            document.getElementById('submitTwitterButton').disabled = true;
+        })
+        .catch(err => console.error('Error updating lives:', err));
     } else {
         alert('Invalid Twitter link');
     }
-} catch (error) {
-    console.error('Error in submitTwitterLink:', error);
 }
-}
+
 
 function verifyAndSubmitTwitterLink() {
     const twitterLink = document.getElementById('twitterLinkInput').value;
@@ -122,7 +130,7 @@ function verifyAndSubmitTwitterLink() {
     // Define multiple patterns for valid Twitter URLs
     const patterns = [
         /^https?:\/\/twitter\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/, // Standard Twitter status URL
-        /^https?:\/\/x\.com\/[a-zA-Z0-9_]+$/ // Additional pattern (e.g., x.com)
+        /^https?:\/\/x\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/ // Additional pattern (e.g., x.com)
     ];
 
     // Check if the URL matches any of the defined patterns
