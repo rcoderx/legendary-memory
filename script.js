@@ -1,36 +1,60 @@
-// Example of using Ethereum wallet connection (e.g., MetaMask)
 document.getElementById('connectWallet').addEventListener('click', function() {
-    if (typeof window.ethereum !== 'undefined') {
+    if (window.ethereum) {
         window.ethereum.request({ method: 'eth_requestAccounts' })
-        .then(function(accounts) {
-            if (accounts.length > 0) {
-                const walletAddress = accounts[0];
-                alert('Wallet connected: ' + walletAddress);
-                // Store the connected wallet address for later use
-                localStorage.setItem('walletAddress', walletAddress);
-            } else {
-                alert('No wallet addresses found.');
-            }
-        })
-        .catch(function(error) {
-            console.error("Error connecting to wallet: ", error);
-        });
+            .then(accounts => {
+                if (accounts.length === 0) {
+                    console.log('No wallet found');
+                    return;
+                }
+                const userAddress = accounts[0];
+                console.log('Wallet address:', userAddress);
+                document.getElementById('connectWallet').innerText = userAddress;
+
+                fetch('https://psychic-chainsaw-production.up.railway.app/saveUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ address: userAddress })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.lives > 0) {
+                        window.location.href = 'game.html'; // Redirect to game if the user has lives
+                    } else {
+                        alert('No lives left. Please try again later.'); // Inform the user if they have no lives
+                    }
+                })
+                .catch(error => {
+                    console.error('Error connecting wallet:', error);
+                    alert('Error connecting wallet. Please try again.');
+                });
+            })
+            .catch(error => {
+                console.error('Error requesting Ethereum accounts:', error);
+            });
     } else {
-        alert("Ethereum wallet not found. Please install MetaMask.");
+        alert('Ethereum wallet not found. Please install MetaMask.');
     }
 });
+
 
 // Additional script setup...
 
 function submitScore(score) {
+    try {
+        console.log("submitScore called with score:", score);
     const address = localStorage.getItem('walletAddress');
-    fetch('/updateScore', {
+    fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address, score })
     }).then(response => response.json())
     .then(data => console.log('Score updated:', data))
     .catch(err => console.error('Error updating score:', err));
+} catch (error) {
+    console.error('Error in submitScore:', error);
+}
 }
 
 function verifyTwitterLink(url) {
@@ -57,10 +81,12 @@ function handleTwitterShare() {
 
 
 function submitTwitterLink() {
+    try {
+        console.log("submitTwitterLink called");
     const twitterLink = document.getElementById('twitterLinkInput').value;
     if (verifyTwitterLink(twitterLink)) {
         // Send request to server to update lives
-        fetch('/updateLives', {
+        fetch('https://psychic-chainsaw-production.up.railway.app/updateLives', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ address: localStorage.getItem('walletAddress'), lives: 10 })
@@ -70,7 +96,11 @@ function submitTwitterLink() {
     } else {
         alert('Invalid Twitter link');
     }
+} catch (error) {
+    console.error('Error in submitTwitterLink:', error);
 }
+}
+
 function verifyAndSubmitTwitterLink() {
     const twitterLink = document.getElementById('twitterLinkInput').value;
     if (verifyTwitterLink(twitterLink)) {
@@ -86,7 +116,9 @@ function verifyAndSubmitTwitterLink() {
     }
 }
 
-function verifyTwitterLink(url) {
+function verifyAndSubmitTwitterLink() {
+    try {
+        console.log("verifyAndSubmitTwitterLink called");
     // Define multiple patterns for valid Twitter URLs
     const patterns = [
         /^https?:\/\/twitter\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/, // Standard Twitter status URL
@@ -95,10 +127,13 @@ function verifyTwitterLink(url) {
 
     // Check if the URL matches any of the defined patterns
     return patterns.some(pattern => pattern.test(url));
+} catch (error) {
+    console.error('Error in verifyAndSubmitTwitterLink:', error);
+}
 }
 
 function handleError(error) {
-    console.error('An error occurred:', error);
+    console.error('An error occurred in handleError:', error);
     alert('An error occurred. Please try again.');
 }
 
@@ -107,7 +142,9 @@ function handleError(error) {
 
 // Function to retrieve the leaderboard from the server
 function getLeaderboard() {
-    fetch('http://your-railway-app-url.com/leaderboard')
+    try {
+        console.log("getLeaderboard called");
+    fetch('https://psychic-chainsaw-production.up.railway.app/leaderboard')
         .then(response => response.json())
         .then(leaderboardData => {
             let leaderboardHTML = '<h3>Leaderboard</h3>';
@@ -117,10 +154,15 @@ function getLeaderboard() {
             document.getElementById('leaderboard').innerHTML = leaderboardHTML;
         })
         .catch(error => console.error('Error fetching leaderboard:', error));
+    } catch (error) {
+        console.error('Error in getLeaderboard:', error);
+    }
 }
 function updateLives() {
+    try {
+        console.log("updateLives called");
     const walletAddress = localStorage.getItem('walletAddress');
-    fetch('http://your-railway-app-url.com/getLives?address=' + walletAddress)
+    fetch('https://psychic-chainsaw-production.up.railway.app/getLives?address=' + walletAddress)
         .then(response => response.json())
         .then(data => {
             if (data.lives > 0) {
@@ -131,10 +173,16 @@ function updateLives() {
             }
         })
         .catch(error => console.error('Error checking lives:', error));
+    } catch (error) {
+        console.error('Error in updateLives:', error);
+    }
 }
+
 function updateScore(score) {
+    try {
+        console.log("updateScore called with score:", score);
     const walletAddress = localStorage.getItem('walletAddress');
-    fetch('http://your-railway-app-url.com/updateScore', {
+    fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address: walletAddress, score: score })
@@ -147,6 +195,9 @@ function updateScore(score) {
         }
     })
     .catch(error => console.error('Error updating score:', error));
+} catch (error) {
+    console.error('Error in updateScore:', error);
+}
 }
 
 
