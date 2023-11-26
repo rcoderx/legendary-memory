@@ -233,14 +233,14 @@ function updateScoreAndLives() {
     fetch(`https://psychic-chainsaw-production.up.railway.app/updateScore`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address: walletAddress, score })
+        body: JSON.stringify({ address: address, score }) // Use the 'address' variable here
     }).catch(error => console.error('Error updating score:', error));
 
     // Decrement lives by 1
     fetch(`https://psychic-chainsaw-production.up.railway.app/updateLives`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address: walletAddress, livesChange: -1 })
+        body: JSON.stringify({ address: address, livesChange: -1 }) // And also here
     })
     .then(response => response.json())
     .then(data => {
