@@ -78,19 +78,48 @@
     <script>
         // Avatar Selection Script
         function selectAvatar(avatarSrc) {
-    localStorage.setItem('selectedAvatar', avatarSrc);
-    snakeImage.src = avatarSrc; // Update the snake image source
-    startGame();
-}
-
-function startGame() {
-    // Hide avatar selection
-    document.getElementById('avatars').style.display = 'none';
-
-    // Start the game
-    gameInProgress = true;
-    window.requestAnimationFrame(main);
-}
+            localStorage.setItem('selectedAvatar', avatarSrc);
+            snakeImage.src = avatarSrc; // Update the snake image source
+    
+            // Call checkLivesAndStartGame instead of startGame
+            checkLivesAndStartGame();
+        }
+    
+        function checkLivesAndStartGame() {
+            const walletAddress = sessionStorage.getItem('walletAddress');
+            if (!walletAddress) {
+                alert("Please connect your wallet to play.");
+                window.location.href = 'index.html'; // Redirect to homepage if no wallet is connected
+                return;
+            }
+    
+            fetch(`https://psychic-chainsaw-production.up.railway.app/getLives?address=${walletAddress}`)
+                .then(response => response.json())
+                .then(data => {
+                    updateLivesDisplay(data.lives);
+                    
+                    try {
+                        console.log("Lives data received:", data);
+                        if (data.lives > 0) {
+                            startGame(); // Function that starts the game
+                        } else {
+                            alert("You have no lives left. Share on Twitter for more lives!");
+                            // Optionally, disable the Start/Restart buttons
+                            document.getElementById('startButton').style.display = 'none';
+                            document.getElementById('restartButton').style.display = 'none';
+                        }
+                    } catch (error) {
+                        console.error('Error processing lives data:', error);
+                        alert('Error processing lives. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking lives:', error);
+                    alert('Error checking lives. Please try again.');
+                    window.location.href = 'index.html'; // Redirect to homepage on error
+                });
+        }
     </script>
+    
 </body>
 </html>
