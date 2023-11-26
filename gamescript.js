@@ -65,12 +65,10 @@ let lastRenderTime = 0;
     if (didGameEnd()) {
         gameOverSound.play();
         backgroundMusic.pause();
-        restartButton.style.display = 'block';
-        startButton.style.display = 'block';
+        restartButton.style.display = 'block'; // Show Restart button
         gameInProgress = false;
-        return;
     }
-}
+ }    
 
 
 window.requestAnimationFrame(main); // Start the game loop
@@ -87,19 +85,21 @@ window.requestAnimationFrame(main); // Start the game loop
 // Start and Restart Button Event Listeners
 startButton.addEventListener('click', function() {
     gameInProgress = true;
-    startButton.style.display = 'none';
+    startButton.style.display = 'none'; // Hide Start button
     backgroundMusic.play(); // Play the background music
     window.requestAnimationFrame(main);
 });
+
 
 
 restartButton.addEventListener('click', function() {
     resetGame();
     gameInProgress = true;
-    restartButton.style.display = 'none';
+    restartButton.style.display = 'none'; // Hide Restart button
     backgroundMusic.play(); // Play the background music
     window.requestAnimationFrame(main);
 });
+
 
 
 function resetGame() {
