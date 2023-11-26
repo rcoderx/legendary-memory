@@ -124,10 +124,10 @@ function verifyAndSubmitTwitterLink() {
     }
 }
 
-function verifyAndSubmitTwitterLink() {
+function verifyTwitterLink(url) {
+    // Define multiple patterns for valid Twitter URLs
     try {
         console.log("verifyAndSubmitTwitterLink called");
-    // Define multiple patterns for valid Twitter URLs
     const patterns = [
         /^https?:\/\/twitter\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/, // Standard Twitter status URL
         /^https?:\/\/x\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/ // Additional pattern (e.g., x.com)
@@ -135,10 +135,13 @@ function verifyAndSubmitTwitterLink() {
 
     // Check if the URL matches any of the defined patterns
     return patterns.some(pattern => pattern.test(url));
+
+
 } catch (error) {
     console.error('Error in verifyAndSubmitTwitterLink:', error);
 }
 }
+
 
 function handleError(error) {
     console.error('An error occurred in handleError:', error);
