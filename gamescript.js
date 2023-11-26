@@ -221,10 +221,11 @@ function didGameEnd() {
 function handleGameOver() {
     gameOverSound.play();
     backgroundMusic.pause();
-    restartButton.style.display = 'block'; // Show Restart button
+    restartButton.style.display = 'none'; // Hide Restart button if no lives left
     gameInProgress = false;
     updateScoreAndLives();
 }
+
 
 function updateScoreAndLives() {
     const address = sessionStorage.getItem('walletAddress');
@@ -233,19 +234,26 @@ function updateScoreAndLives() {
     fetch(`https://psychic-chainsaw-production.up.railway.app/updateScore`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address: address, score }) // Use the 'address' variable here
+        body: JSON.stringify({ address: address, score })
     }).catch(error => console.error('Error updating score:', error));
 
     // Decrement lives by 1
     fetch(`https://psychic-chainsaw-production.up.railway.app/updateLives`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address: address, livesChange: -1 }) // And also here
+        body: JSON.stringify({ address: address, livesChange: -1 })
     })
     .then(response => response.json())
     .then(data => {
         updateLivesDisplay(data.lives);
         document.getElementById('livesCount').innerText = data.lives;
+        if (data.lives <= 0) {
+            alert("You have no lives left. Share on Twitter for more lives!");
+            restartButton.style.display = 'none'; // Hide Restart button if no lives left
+            // Optionally, clear the canvas or show a message on the canvas
+            clearCanvas();
+            // Add more code here if you want to display a message on the canvas
+        }
     })
     .catch(error => console.error('Error updating lives:', error));
 }
@@ -383,9 +391,10 @@ function checkLivesAndStartGame() {
                     startGame(); // Function that starts the game
                 } else {
                     alert("You have no lives left. Share on Twitter for more lives!");
-                    // Logic to direct the user to get more lives (e.g., show Twitter share button)
+                    // Optionally, disable the Start/Restart buttons
+                    startButton.style.display = 'none';
+                    restartButton.style.display = 'none';
                 }
-                
             } catch (error) {
                 console.error('Error processing lives data:', error);
                 alert('Error processing lives. Please try again.');
