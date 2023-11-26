@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snekcoin Saga</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #f0f0f0; 
+            margin: 0; 
+            padding: 20px;
+        }
+        #leaderboard {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Blockchain Game</h1>
+    <button id="connectWallet">Connect Wallet</button>
+    <div id="leaderboard"><h2>Leaderboard</h2></div>
+    <a href="game.html"><button>Play Game</button></a>
+    <!-- Add this inside the body where appropriate -->
+    <button id="twitterShareBtn" onclick="handleTwitterShare()">Share on Twitter</button>
+<input type="text" id="twitterLinkInput" placeholder="Enter Twitter link">
+<button onclick="submitTwitterLink()">Submit Twitter Link</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

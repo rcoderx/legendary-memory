@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnekCoin Saga</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #ffd700 0%, #b7974c 100%); /* Golden gradient */
+            text-align: center; /* Center content */
+        }
+        #gameContainer {
+            position: relative;
+            margin: auto; /* Center the container */
+            width: 800px; /* Match canvas width for alignment */
+        }
+        canvas {
+            background-color: #000;
+            display: block;
+            margin: 20px auto; /* Center canvas and add space around it */
+            border: 5px solid red; /* Red border for the canvas */
+            box-shadow: 0 0 20px red; /* Subtle glow for the canvas */
+        }
+        button {
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px;
+            display: block; /* Show the start button */
+        }
+        #restartButton {
+            display: none; /* Hide the restart button initially */
+        }
+        p {
+            color: #fff; /* Ensure score is visible against the background */
+        }
+        @keyframes bobbing {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .bird {
+        animation: bobbing 2s ease-in-out infinite;
+    }
+    </style>
+</head>
+<body>
+    <h2>Choose Your Snake Avatar</h2>
+    <div id="avatars">
+        <div>
+            <img src="snake.png" alt="Avatar 1" class="avatar" onclick="selectAvatar('snake.png')">
+            <p>Avatar 1</p> <!-- Name for Avatar 1 -->
+        </div>
+        <div>
+            <img src="snake2.png" alt="Avatar 2" class="avatar" onclick="selectAvatar('snake2.png')">
+            <p>Avatar 2</p> <!-- Name for Avatar 2 -->
+        </div>
+        <div>
+            <img src="snake3.png" alt="Avatar 3" class="avatar" onclick="selectAvatar('snake3.png')">
+            <p>Avatar 3</p> <!-- Name for Avatar 3 -->
+        </div>
+    </div>
+    
+<body>
+    <div id="gameContainer">
+        <h1 style="color: #fff;">SnekCoin Saga</h1> <!-- Game title -->
+        <button id="startButton" onclick="checkLivesAndStartGame()">Start Game</button>
+        <button id="restartButton" style="display: none;" onclick="checkLivesAndStartGame()">Restart Game</button>
+        <canvas id="gameCanvas" width="800" height="800"></canvas>
+        <p>Score: <span id="score">0</span></p>
+        <p>High Score: <span id="highScore">0</span></p> <!-- High Score display -->
+        <!-- Add this to your game HTML file -->
+<div id="leaderboard"></div>
+<p>Lives: <span id="livesCount"></span></p>
+    </div>
+    <script src="gamescript.js"></script>
+    <script>
+        // Avatar Selection Script
+        function selectAvatar(avatarSrc) {
+    localStorage.setItem('selectedAvatar', avatarSrc);
+    snakeImage.src = avatarSrc; // Update the snake image source
+    startGame();
+}
+
+function startGame() {
+    // Hide avatar selection
+    document.getElementById('avatars').style.display = 'none';
+
+    // Start the game
+    gameInProgress = true;
+    window.requestAnimationFrame(main);
+}
+    </script>
+</body>
+</html>
