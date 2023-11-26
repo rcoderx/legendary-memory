@@ -1,20 +1,44 @@
-// Example of using Ethereum wallet connection (e.g., MetaMask)
 document.getElementById('connectWallet').addEventListener('click', function() {
     if (typeof window.ethereum !== 'undefined') {
         window.ethereum.request({ method: 'eth_requestAccounts' })
-        .then(function(accounts) {
-            if (accounts.length > 0) {
-                const walletAddress = accounts[0];
-                alert('Wallet connected: ' + walletAddress);
-                // Store the connected wallet address for later use
-                localStorage.setItem('walletAddress', walletAddress);
-            } else {
-                alert('No wallet addresses found.');
-            }
-        })
-        .catch(function(error) {
-            console.error("Error connecting to wallet: ", error);
-        });
+            .then(function(accounts) {
+                if (accounts.length > 0) {
+                    const walletAddress = accounts[0];
+                    alert('Wallet connected: ' + walletAddress);
+                    localStorage.setItem('walletAddress', walletAddress);
+                    // Assuming your connect button has an ID 'connectWallet'
+document.getElementById('connectWallet').innerText = userAddress;
+
+
+                    // Send the wallet address to the backend
+                    fetch('https://psychic-chainsaw-production.up.railway.app/saveUser', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ address: walletAddress })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.lives > 0) {
+                            // Allow access to the game
+                            window.location.href = 'game.html';
+                        } else {
+                            // Make game inaccessible and alert user
+                            alert('No lives left. Please try again later.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error connecting wallet:', error);
+                        // Handle error, make game inaccessible
+                    });
+                } else {
+                    alert('No wallet addresses found.');
+                }
+            })
+            .catch(function(error) {
+                console.error("Error connecting to wallet: ", error);
+            });
     } else {
         alert("Ethereum wallet not found. Please install MetaMask.");
     }
@@ -23,6 +47,8 @@ document.getElementById('connectWallet').addEventListener('click', function() {
 // Additional script setup...
 
 function submitScore(score) {
+    try {
+        console.log("submitScore called with score:", score);
     const address = localStorage.getItem('walletAddress');
     fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
         method: 'POST',
@@ -31,6 +57,9 @@ function submitScore(score) {
     }).then(response => response.json())
     .then(data => console.log('Score updated:', data))
     .catch(err => console.error('Error updating score:', err));
+} catch (error) {
+    console.error('Error in submitScore:', error);
+}
 }
 
 function verifyTwitterLink(url) {
@@ -57,6 +86,8 @@ function handleTwitterShare() {
 
 
 function submitTwitterLink() {
+    try {
+        console.log("submitTwitterLink called");
     const twitterLink = document.getElementById('twitterLinkInput').value;
     if (verifyTwitterLink(twitterLink)) {
         // Send request to server to update lives
@@ -70,7 +101,11 @@ function submitTwitterLink() {
     } else {
         alert('Invalid Twitter link');
     }
+} catch (error) {
+    console.error('Error in submitTwitterLink:', error);
 }
+}
+
 function verifyAndSubmitTwitterLink() {
     const twitterLink = document.getElementById('twitterLinkInput').value;
     if (verifyTwitterLink(twitterLink)) {
@@ -86,7 +121,9 @@ function verifyAndSubmitTwitterLink() {
     }
 }
 
-function verifyTwitterLink(url) {
+function verifyAndSubmitTwitterLink() {
+    try {
+        console.log("verifyAndSubmitTwitterLink called");
     // Define multiple patterns for valid Twitter URLs
     const patterns = [
         /^https?:\/\/twitter\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+$/, // Standard Twitter status URL
@@ -95,10 +132,13 @@ function verifyTwitterLink(url) {
 
     // Check if the URL matches any of the defined patterns
     return patterns.some(pattern => pattern.test(url));
+} catch (error) {
+    console.error('Error in verifyAndSubmitTwitterLink:', error);
+}
 }
 
 function handleError(error) {
-    console.error('An error occurred:', error);
+    console.error('An error occurred in handleError:', error);
     alert('An error occurred. Please try again.');
 }
 
@@ -107,6 +147,8 @@ function handleError(error) {
 
 // Function to retrieve the leaderboard from the server
 function getLeaderboard() {
+    try {
+        console.log("getLeaderboard called");
     fetch('https://psychic-chainsaw-production.up.railway.app/leaderboard')
         .then(response => response.json())
         .then(leaderboardData => {
@@ -117,8 +159,13 @@ function getLeaderboard() {
             document.getElementById('leaderboard').innerHTML = leaderboardHTML;
         })
         .catch(error => console.error('Error fetching leaderboard:', error));
+    } catch (error) {
+        console.error('Error in getLeaderboard:', error);
+    }
 }
 function updateLives() {
+    try {
+        console.log("updateLives called");
     const walletAddress = localStorage.getItem('walletAddress');
     fetch('https://psychic-chainsaw-production.up.railway.app/getLives?address=' + walletAddress)
         .then(response => response.json())
@@ -131,8 +178,14 @@ function updateLives() {
             }
         })
         .catch(error => console.error('Error checking lives:', error));
+    } catch (error) {
+        console.error('Error in updateLives:', error);
+    }
 }
+
 function updateScore(score) {
+    try {
+        console.log("updateScore called with score:", score);
     const walletAddress = localStorage.getItem('walletAddress');
     fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
         method: 'POST',
@@ -147,6 +200,9 @@ function updateScore(score) {
         }
     })
     .catch(error => console.error('Error updating score:', error));
+} catch (error) {
+    console.error('Error in updateScore:', error);
+}
 }
 
 

@@ -40,6 +40,11 @@ let animationFrameId;
 
 let lastRenderTime = 0;
  // Ensure this is set correctly in your script
+ window.onload = function() {
+    document.getElementById('highScore').innerText = highScore;
+    const highScore = localStorage.getItem('highScore') || 0;
+    // Display the high score somewhere in your UI
+}
 
  function main(currentTime) {
     if (!gameInProgress) return;
@@ -335,21 +340,35 @@ function updateLives(lives) {
 }
 function checkLivesAndStartGame() {
     const walletAddress = localStorage.getItem('walletAddress');
+    if (!walletAddress) {
+        alert("Please connect your wallet to play.");
+        window.location.href = 'index.html'; // Redirect to homepage if no wallet is connected
+        return;
+    }
+
     fetch(`https://psychic-chainsaw-production.up.railway.app/getLives?address=${walletAddress}`)
         .then(response => response.json())
         .then(data => {
-            if (data.lives > 0) {
-                startGame(); // Function that starts the game
-            } else {
-                alert("You have no lives left. Share on Twitter for more lives!");
-                // Logic to direct the user to get more lives (e.g., show Twitter share button)
+            try {
+                console.log("Lives data received:", data);
+                if (data.lives > 0) {
+                    startGame(); // Function that starts the game
+                } else {
+                    alert("You have no lives left. Share on Twitter for more lives!");
+                    // Logic to direct the user to get more lives (e.g., show Twitter share button)
+                }
+            } catch (error) {
+                console.error('Error processing lives data:', error);
+                alert('Error processing lives. Please try again.');
             }
         })
         .catch(error => {
             console.error('Error checking lives:', error);
             alert('Error checking lives. Please try again.');
+            window.location.href = 'index.html'; // Redirect to homepage on error
         });
 }
+
 
 // Update this whenever lives change
 
@@ -358,11 +377,7 @@ function checkLivesAndStartGame() {
 
 document.addEventListener("keydown", changeDirection);
 // Load and display the high score on game start
-window.onload = function() {
-    document.getElementById('highScore').innerText = highScore;
-    const highScore = localStorage.getItem('highScore') || 0;
-    // Display the high score somewhere in your UI
-}
+
 
 // Comment or remove auto-start game loop
 // main(); // This will now be started by the Start button
