@@ -71,7 +71,11 @@ let lastRenderTime = 0;
             handleGameOver();
             return; // Stop the game loop
         }
-    }    
+    }   
+    function updateLivesDisplay(lives) {
+        document.getElementById('livesCount').innerText = lives;
+    }
+     
 
 window.requestAnimationFrame(main); // Start the game loop
 
@@ -237,6 +241,7 @@ function updateScoreAndLives() {
     })
     .then(response => response.json())
     .then(data => {
+        updateLivesDisplay(data.lives);
         document.getElementById('livesCount').innerText = data.lives;
     })
     .catch(error => console.error('Error updating lives:', error));
@@ -367,6 +372,8 @@ function checkLivesAndStartGame() {
     fetch(`https://psychic-chainsaw-production.up.railway.app/getLives?address=${walletAddress}`)
         .then(response => response.json())
         .then(data => {
+            updateLivesDisplay(data.lives);
+            
             try {
                 console.log("Lives data received:", data);
                 if (data.lives > 0) {
@@ -375,6 +382,7 @@ function checkLivesAndStartGame() {
                     alert("You have no lives left. Share on Twitter for more lives!");
                     // Logic to direct the user to get more lives (e.g., show Twitter share button)
                 }
+                
             } catch (error) {
                 console.error('Error processing lives data:', error);
                 alert('Error processing lives. Please try again.');
