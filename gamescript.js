@@ -376,7 +376,7 @@ function checkLivesAndStartGame() {
     const walletAddress = sessionStorage.getItem('walletAddress');
     if (!walletAddress) {
         alert("Please connect your wallet to play.");
-        window.location.href = 'index.html'; // Redirect to homepage if no wallet is connected
+        window.location.href = 'index.html';
         return;
     }
 
@@ -384,36 +384,29 @@ function checkLivesAndStartGame() {
         .then(response => response.json())
         .then(data => {
             updateLivesDisplay(data.lives);
-            
-            try {
-                console.log("Lives data received:", data);
-                if (data.lives > 0) {
-                    startGame(); // Function that starts the game
+            if (data.lives > 0) {
+                gameInProgress = true;
+                startButton.style.display = 'none';
+                backgroundMusic.play();
 
-                    // Hide avatars here if they should be hidden just before the game starts
+                // Hide avatars
                 document.getElementById('avatarContainer').style.display = 'none';
 
-                window.requestAnimationFrame(main); // Start the game
-            
-                } else {
-                    alert("You have no lives left. Share on Twitter for more lives!");
-                    // Optionally, disable the Start/Restart buttons
-                    startButton.style.display = 'none';
-                    restartButton.style.display = 'none';
-                }
-            } catch (error) {
-                console.error('Error processing lives data:', error);
-                alert('Error processing lives. Please try again.');
+                // Start the game loop
+                window.requestAnimationFrame(main);
+            } else {
+                alert("You have no lives left. Share on Twitter for more lives!");
+                startButton.style.display = 'none';
+                restartButton.style.display = 'none';
             }
-            document.getElementById('avatarContainer').style.display = 'block';
-        
         })
         .catch(error => {
             console.error('Error checking lives:', error);
             alert('Error checking lives. Please try again.');
-            window.location.href = 'index.html'; // Redirect to homepage on error
+            window.location.href = 'index.html';
         });
 }
+
 
 
 

@@ -77,15 +77,18 @@
     <script src="gamescript.js"></script>
     <script>
         // Avatar Selection Script
-        function selectAvatar(avatarSrc) {
-            localStorage.setItem('selectedAvatar', avatarSrc);
-            snakeImage.src = avatarSrc; // Update the snake image source
+      
+    function selectAvatar(avatarSrc) {
+        localStorage.setItem('selectedAvatar', avatarSrc);
+        snakeImage.src = avatarSrc;
 
-            document.getElementById('avatarContainer').style.display = 'none';
-    
-            // Call checkLivesAndStartGame instead of startGame
-            checkLivesAndStartGame();
-        }
+        // Hide avatars immediately after selection
+        document.getElementById('avatarContainer').style.display = 'none';
+
+        // Check lives and start the game if possible
+        checkLivesAndStartGame();
+    }
+
     
         function checkLivesAndStartGame() {
             const walletAddress = sessionStorage.getItem('walletAddress');
