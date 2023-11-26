@@ -10,6 +10,9 @@ document.getElementById('connectWallet').addEventListener('click', function() {
                 console.log('Wallet address:', userAddress);
                 document.getElementById('connectWallet').innerText = userAddress;
 
+                // Save user address in session storage
+                sessionStorage.setItem('walletAddress', userAddress);
+
                 fetch('https://psychic-chainsaw-production.up.railway.app/saveUser', {
                     method: 'POST',
                     headers: {
@@ -44,17 +47,17 @@ document.getElementById('connectWallet').addEventListener('click', function() {
 function submitScore(score) {
     try {
         console.log("submitScore called with score:", score);
-    const address = localStorage.getItem('walletAddress');
-    fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address, score })
-    }).then(response => response.json())
-    .then(data => console.log('Score updated:', data))
-    .catch(err => console.error('Error updating score:', err));
-} catch (error) {
-    console.error('Error in submitScore:', error);
-}
+        const address = sessionStorage.getItem('walletAddress');
+        fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ address, score })
+        }).then(response => response.json())
+        .then(data => console.log('Score updated:', data))
+        .catch(err => console.error('Error updating score:', err));
+    } catch (error) {
+        console.error('Error in submitScore:', error);
+    }
 }
 
 function verifyTwitterLink(url) {
@@ -88,7 +91,7 @@ function submitTwitterLink() {
         fetch('https://psychic-chainsaw-production.up.railway.app/updateLives', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ address: localStorage.getItem('walletAddress'), livesChange: 10 })
+            body: JSON.stringify({ address: sessionStorage.getItem('walletAddress'), livesChange: 10 })
         })
         .then(response => {
             if (!response.ok) {
@@ -115,7 +118,7 @@ function verifyAndSubmitTwitterLink() {
         fetch('/updateLives', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ address: localStorage.getItem('walletAddress'), lives: 10 })
+            body: JSON.stringify({ address: sessionStorage.getItem('walletAddress'), lives: 10 })
         }).then(() => {
             alert('Lives updated successfully');
         }).catch(handleError);
@@ -172,7 +175,7 @@ function getLeaderboard() {
 function updateLives() {
     try {
         console.log("updateLives called");
-    const walletAddress = localStorage.getItem('walletAddress');
+        const address = sessionStorage.getItem('walletAddress');
     fetch('https://psychic-chainsaw-production.up.railway.app/getLives?address=' + walletAddress)
         .then(response => response.json())
         .then(data => {
@@ -192,7 +195,7 @@ function updateLives() {
 function updateScore(score) {
     try {
         console.log("updateScore called with score:", score);
-    const walletAddress = localStorage.getItem('walletAddress');
+        const address = sessionStorage.getItem('walletAddress');
     fetch('https://psychic-chainsaw-production.up.railway.app/updateScore', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

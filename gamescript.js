@@ -227,7 +227,7 @@ function handleGameOver() {
 }
 
 function updateScoreAndLives() {
-    const walletAddress = localStorage.getItem('walletAddress');
+    const address = sessionStorage.getItem('walletAddress');
     
     // Update score
     fetch(`https://psychic-chainsaw-production.up.railway.app/updateScore`, {
@@ -365,7 +365,7 @@ function updateLives(lives) {
     document.getElementById('livesCount').innerText = lives;
 }
 function checkLivesAndStartGame() {
-    const walletAddress = localStorage.getItem('walletAddress');
+    const walletAddress = sessionStorage.getItem('walletAddress');
     if (!walletAddress) {
         alert("Please connect your wallet to play.");
         window.location.href = 'index.html'; // Redirect to homepage if no wallet is connected
@@ -397,6 +397,7 @@ function checkLivesAndStartGame() {
             window.location.href = 'index.html'; // Redirect to homepage on error
         });
 }
+
 
 
 // Update this whenever lives change
