@@ -80,6 +80,8 @@
         function selectAvatar(avatarSrc) {
             localStorage.setItem('selectedAvatar', avatarSrc);
             snakeImage.src = avatarSrc; // Update the snake image source
+
+            document.getElementById('avatarContainer').style.display = 'none';
     
             // Call checkLivesAndStartGame instead of startGame
             checkLivesAndStartGame();

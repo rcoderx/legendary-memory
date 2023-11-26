@@ -389,6 +389,12 @@ function checkLivesAndStartGame() {
                 console.log("Lives data received:", data);
                 if (data.lives > 0) {
                     startGame(); // Function that starts the game
+
+                    // Hide avatars here if they should be hidden just before the game starts
+                document.getElementById('avatarContainer').style.display = 'none';
+
+                window.requestAnimationFrame(main); // Start the game
+            
                 } else {
                     alert("You have no lives left. Share on Twitter for more lives!");
                     // Optionally, disable the Start/Restart buttons
@@ -399,6 +405,8 @@ function checkLivesAndStartGame() {
                 console.error('Error processing lives data:', error);
                 alert('Error processing lives. Please try again.');
             }
+            document.getElementById('avatarContainer').style.display = 'block';
+        
         })
         .catch(error => {
             console.error('Error checking lives:', error);
