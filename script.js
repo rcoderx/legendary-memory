@@ -1,48 +1,43 @@
 document.getElementById('connectWallet').addEventListener('click', function() {
-    if (typeof window.ethereum !== 'undefined') {
+    if (window.ethereum) {
         window.ethereum.request({ method: 'eth_requestAccounts' })
-            .then(function(accounts) {
-                if (accounts.length > 0) {
-                    const walletAddress = accounts[0];
-                    alert('Wallet connected: ' + walletAddress);
-                    localStorage.setItem('walletAddress', walletAddress);
-                    // Assuming your connect button has an ID 'connectWallet'
-document.getElementById('connectWallet').innerText = userAddress;
-
-
-                    // Send the wallet address to the backend
-                    fetch('https://psychic-chainsaw-production.up.railway.app/saveUser', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ address: walletAddress })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.lives > 0) {
-                            // Allow access to the game
-                            window.location.href = 'game.html';
-                        } else {
-                            // Make game inaccessible and alert user
-                            alert('No lives left. Please try again later.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error connecting wallet:', error);
-                        // Handle error, make game inaccessible
-                    });
-                } else {
-                    alert('No wallet addresses found.');
+            .then(accounts => {
+                if (accounts.length === 0) {
+                    console.log('No wallet found');
+                    return;
                 }
+                const userAddress = accounts[0];
+                console.log('Wallet address:', userAddress);
+                document.getElementById('connectWallet').innerText = userAddress;
+
+                fetch('https://psychic-chainsaw-production.up.railway.app/saveUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ address: userAddress })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.lives > 0) {
+                        window.location.href = 'game.html'; // Redirect to game if the user has lives
+                    } else {
+                        alert('No lives left. Please try again later.'); // Inform the user if they have no lives
+                    }
+                })
+                .catch(error => {
+                    console.error('Error connecting wallet:', error);
+                    alert('Error connecting wallet. Please try again.');
+                });
             })
-            .catch(function(error) {
-                console.error("Error connecting to wallet: ", error);
+            .catch(error => {
+                console.error('Error requesting Ethereum accounts:', error);
             });
     } else {
-        alert("Ethereum wallet not found. Please install MetaMask.");
+        alert('Ethereum wallet not found. Please install MetaMask.');
     }
 });
+
 
 // Additional script setup...
 
