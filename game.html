@@ -76,14 +76,17 @@
     </div>
     <script src="gamescript.js"></script>
     <script>
-        // Avatar Selection Script
         function selectAvatar(avatarSrc) {
             localStorage.setItem('selectedAvatar', avatarSrc);
             snakeImage.src = avatarSrc; // Update the snake image source
     
-            // Call checkLivesAndStartGame instead of startGame
+            // Hide the start button
+            document.getElementById('startButton').style.display = 'none';
+    
+            // Call checkLivesAndStartGame to start the game if the player has lives
             checkLivesAndStartGame();
         }
+    
     
         function checkLivesAndStartGame() {
             const walletAddress = sessionStorage.getItem('walletAddress');
