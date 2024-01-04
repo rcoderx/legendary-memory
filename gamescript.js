@@ -3,6 +3,8 @@ canvas.addEventListener('touchmove', function(e) {
     e.preventDefault(); // Prevent the default touch action (scrolling, zooming, etc.)
 }, { passive: false }); // Setting passive to false allows preventDefault to work
 
+const wallThickness = 20; // Thickness of the wall
+    const gridSize = 20; // Define the grid size to match the snake's movement
 const ctx = canvas.getContext('2d');
 const grid = 20;
 let speed = 2;
@@ -204,8 +206,7 @@ function advanceSnake() {
     console.log("Ate Food! Score: ", score, "New Speed: ", speed);
 }
 function createFood() {
-    const wallThickness = 20; // Thickness of the wall
-    const gridSize = 20; // Define the grid size to match the snake's movement
+    
 
     // Adjust the canvas size to be within wall boundaries
     const adjustedWidth = canvas.width - 2 * wallThickness;
