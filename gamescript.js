@@ -187,7 +187,7 @@ function advanceSnake() {
     }
 
     const head = { x: nextHeadX, y: nextHeadY };
-
+    console.log("Snake Head: ", snake[0], "Food: ", food);
     // Check if the snake has eaten the food
     const didEatFood = head.x === food.x && head.y === food.y;
     if (didEatFood) {
@@ -201,6 +201,7 @@ function advanceSnake() {
     }
 
     snake.unshift(head);  // Add the new head to the snake
+    console.log("Ate Food! Score: ", score, "New Speed: ", speed);
 }
 function createFood() {
     const wallThickness = 15; // Thickness of the wall
