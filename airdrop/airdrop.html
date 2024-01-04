@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnekCoin Saga Twitter Task</title>
+    <!-- Add the same stylesheet link or style tags as in index.html for consistent styling -->
+<style>
+/* Basic reset for margin and padding, box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Import the font that best matches the game's logo and theme */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+    font-family: 'Righteous', cursive;
+    background-color: #f0f0f0; /* Adjust based on your site's theme */
+    background-image: url('background1.png');
+    color: #333; /* Text color */
+    line-height: 1.6; /* Adjust line height for readability */
+    text-align: center; /* Default text align left */
+}
+
+/* Header and Navigation Bar Styling */
+.header {
+    background: #1a1a1a; /* Dark background for the header */
+    padding: 20px 0; /* Vertical padding for the header */
+    position: fixed; /* Fix the header to the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* High z-index to ensure the header is above other content */
+    top: 0; /* Align to the top of the page */
+}
+
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: center; /* Center navbar items horizontally */
+    align-items: center; /* Center navbar items vertically */
+}
+
+/* Nav-link styles */
+.nav-link {
+    margin: 0 15px; /* Space out the links */
+    padding: 10px 20px;
+    text-decoration: none; /* Remove underline from links */
+    color: #ffd700; /* Gold text for readability and theme */
+    font-size: 1.2em; /* Slightly larger font size for navigation */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.nav-link:hover {
+    color: #e63946; /* Red color on hover to match the logo */
+}
+
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        label, input[type=text], input[type=button] {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type=text] {
+            width: 100%; /* Adjust as needed */
+    padding: 10px;
+    margin: 10px 0; /* Spacing above and below */
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Light grey border */
+}
+
+        input[type=button] {
+            padding: 10px 20px;
+           
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 15px;
+          background-color: #e63946; /* Twitter blue, adjust as needed */
+          font-size: 16px;
+          transition: background-color 0.3s;
+        }
+
+        input[type=button]:hover {
+            background-color: #63141a; /* Slightly darker on hover */
+        }
+
+        .forms-container {
+    display: flex;
+    justify-content: center; /* Aligns children (forms) horizontally center */
+    align-items: start; /* Aligns children (forms) to the top */
+    gap: 20px; /* Adds space between the forms */
+}
+
+.airdrop-form {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: top; /* Aligns forms to the top if they have different heights */
+}
+
+.referral-container {
+    display: flex;
+    flex-direction: column; /* Stacks children (form and button) vertically */
+    justify-content: flex-start; /* Aligns children to the top */
+}
+
+.generate-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px; /* Adds space between the form and the button */
+    background-color: #e63946; /* Adjust as needed */
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.generate-button:hover {
+    background-color: #63141a; /* Slightly darker on hover */
+}
+
+
+
+        /* Adjust link color to match theme */
+a {
+    color: #6d0e0b; /* Gold color to match theme */
+}
+
+a:hover {
+    color: #e63946; /* Red color on hover to match theme */
+}
+/* Social Links Styling */
+.social-links {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.social-links a {
+    margin: 0 15px; /* Space out the social links */
+    color: #6d0e0b; /* Adjust color as needed */
+    text-decoration: none;
+    display: inline-block; /* Align icons and text */
+}
+
+.social-links img {
+    width: 48px; /* Adjust icon size as needed */
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+
+        ul {
+            list-style: none; /* Removes the default bullet points from lists */
+            padding: 0; /* Removes the default padding from lists */
+        }
+
+        li {
+            margin-bottom: 10px; /* Adds some space below each list item */
+        }
+        #referralLinkDisplay {
+    font-weight: bold; /* Makes text bold */
+    font-size: 1.2em; /* Increases the font size; adjust as needed */
+    color: #e63946; /* The green color used earlier */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px; /* Add more bottom margin for space */
+    padding: 120px 20px 20px 20px;
+}
+h2 {
+    text-align: center;
+    color: #e63946; /* Adjust to match your theme's color */
+}
+
+ol {
+    list-style: none; /* Removes the default list style */
+    padding: 0;
+    counter-reset: custom-counter; /* Initializes a counter */
+}
+
+ol li {
+    counter-increment: custom-counter; /* Increments the counter */
+    text-align: center; /* Centers the text */
+}
+
+ol li::before {
+    content: counter(custom-counter) ". "; /* Inserts the custom counter before the item */
+    font-weight: bold; /* Optional: Makes the number bold */
+    color: #333; /* Adjust color as needed */
+    /* Additional styles for positioning and appearance */
+}
+
+#didyouknow {
+    background: rgba(255, 255, 255, 0.8); /* Adjust the background color as needed */
+    width: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-align the content */
+    margin: 20px auto; /* Add space around the div */
+}
+
+#didyouknow img {
+    max-width: 100%; /* Ensure the image fits within the div */
+    height: auto;
+    margin-bottom: 10px; /* Space below the image */
+}
+
+#didyouknow ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+#didyouknow li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+#didyouknow a {
+    color: #e63946; /* Adjust link color as needed */
+    text-decoration: none; /* Remove underline from links */
+}
+
+#didyouknow a:hover {
+    text-decoration: underline; /* Underline on hover for better user interaction */
+}
+
+
+    </style>
+</head>
+<body>
+     <!-- Navigation (similar to index.html) -->
+     <div class="header">
+        <!-- Navigation -->
+<div class="header">
+    <nav class="navbar">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="airdrop.html">Airdrop</a>
+        <a class="nav-link" href="../presale.html">Presale</a>
+        <a class="nav-link" href="../about.html">About</a>
+        <a class="nav-link" href="../index.html#socialSection">Contact</a>
+    </nav>
+</div>
+</div>
+
+    <h1>SnekCoin Saga Twitter Task</h1>
+    <p><strong>Total tokens in airdrop pool: 1,000,000(10% Total Supply) </strong></p>
+<p>Total Allocated to this task: 300,000 (3% Total supply or 30% Airdrop Allocation)</p>
+    <h2>Tasks:</h2>
+    <ul>
+        <script src="script.js"></script>
+        <li><a href="https://twitter.com/Snekcoinsaga" target="_blank">Follow Twitter</a></li>
+        <li><a href="https://x.com/Snekcoinsaga
+            /status/" target="_blank">Like and Retweet Pinned Tweet</a></li>
+        <li><a href="javascript:void(0)" onclick="shareTweet()">Share Tweet</a></li>
+    </ul>
+    <p style="font-weight: bold; color: #e63946;">Complete the form below:</p>
+
+    <div class="forms-container">
+        <!-- Join Airdrop Form -->
+        <form id="registrationForm" class="airdrop-form">
+            <label for="twitterUsername">Twitter Username:</label>
+            <input type="text" id="twitterUsername" name="twitterUsername"><br><br>
+    
+            <label for="userAddress">Your ETH Address:</label>
+            <input type="text" id="userAddress" name="userAddress" required><br><br>
+    
+            <label for="refereeAddress">Referee's Address:</label>
+            <input type="text" id="refereeAddress" name="refereeAddress"><br><br>
+    
+            <label for="tweetLink">Submit Tweet Link:</label>
+            <input type="text" id="tweetLink" name="tweetLink"><br><br>
+    
+            <input type="button" value="Join Airdrop" onclick="submitForm()">
+        </form>
+    
+        <!-- Check Referral Count Form -->
+        <div class="referral-container">
+            <form id="referralForm" class="airdrop-form">
+                <label for="checkAddress">Your ETH Address:</label>
+                <input type="text" id="checkAddress" name="checkAddress" required><br><br>
+            
+                <input type="button" value="Check Referral Count" onclick="fetchReferralCount()">
+            </form>
+    
+            <!-- Generate Referral Link Button -->
+            <input type="button" value="Generate Referral Link" onclick="generateReferralLink()" class="generate-button">
+        </div>
+        
+    </div>
+    <div id="referralLinkDisplay"></div>
+    <div id="didyouknow">
+        <img src="dyk.png" alt="Did you know">
+        <p>You Can Earn More FREE $HISS Token By:</p>
+        <ul>
+            <li><a href="../presale.html" target="_blank">Joining Presale</a></li>
+            <li> Or </li>
+            <li><a href="../game.html" target="_blank">Playing Our Game</a></li>
+        </ul>
+    </div>
+    
+
+    <div id ='steps'> 
+        <P style="font-weight: bold; color: #e63946;">How To complete The form:</P>
+        <ol>
+        <li>Follow Twitter and enter your twitter username</li>
+        <li>Enter your ETH address</li>
+        <li>Click on share tweet, you will be taken to twitter. Post the Tweet and copy the Link</li>
+        <li>Enter the Link from the step above in submit tweet link, ensure the tweet is made from the same account you entered in step 1 </li>
+    </ol>
+    </div>
+
+         <!-- Social Links Section -->
+         <div class="social-links" id="socialSection">
+            <a href="https://t.me/snekcoinsaga" target="_blank" title="Join us on Telegram">
+                <img src="telegram.png" alt="Telegram" /> Telegram
+            </a>
+            <a href="https://x.com/Snekcoinsaga" target="_blank" title="Follow us on X">
+                <img src="x.png" alt="X" /> X
+                </a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+            </a>
+        </div>
+    
+
+    <script src="airdropscript.js"></script>
+</body>
+</html>
