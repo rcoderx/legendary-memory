@@ -131,6 +131,20 @@ button:hover {
     background-size: cover;
     background-position: center;
 }
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .left-sidebar,
+    .right-sidebar {
+        display: none; /* Hides the sidebars on mobile devices */
+    }
+
+    .content {
+        margin-left: 10px; /* Adjusts the content margin for mobile */
+        margin-right: 10px; /* Adjusts the content margin for mobile */
+    }
+
+    /* You might want to adjust other styles here to fit the mobile view better */
+}
 
 
 
@@ -200,12 +214,7 @@ button:hover {
       h1, h2, h3, p {
         font-size: 14px;
       }
-      .left-sidebar {
-        display: none;
-      }
-      .Right-sidebar {
-        display: none;
-      }
+      
       .content {
         margin: 10px;
       }
