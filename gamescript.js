@@ -175,21 +175,36 @@ function advanceSnake() {
     let nextHeadX = snake[0].x + dx;
     let nextHeadY = snake[0].y + dy;
 
+    // Pass through walls: reappear on the opposite side
+    if (nextHeadX >= canvas.width) {
+        nextHeadX = 0;
+    } else if (nextHeadX < 0) {
+        nextHeadX = canvas.width - grid;
+    }
+
+    if (nextHeadY >= canvas.height) {
+        nextHeadY = 0;
+    } else if (nextHeadY < 0) {
+        nextHeadY = canvas.height - grid;
+    }
+
     const head = { x: nextHeadX, y: nextHeadY };
-    snake.unshift(head);  // Always add the new head to the snake
     console.log("Snake Head: ", snake[0], "Food: ", food);
+
     // Check if the snake has eaten the food
     const didEatFood = head.x === food.x && head.y === food.y;
     if (didEatFood) {
-        score += 10;  // Increase the score
+        score += 10;
         document.getElementById('score').innerHTML = score;
-        createFood();  // Create new food
-        speed += 0.5;  // Increase the speed
+        createFood();
+        speed += 0.5;
         eatSound.play();  // Play eating sound
-        // No need to remove the tail segment, the snake grows by one segment.
+        // No need to remove the last segment (the snake grows by one segment).
     } else {
         snake.pop(); // Remove the last segment to maintain the same length
     }
+
+    snake.unshift(head);  // Add the new head to the snake
     console.log("Ate Food! Score: ", score, "New Speed: ", speed);
 }
 
