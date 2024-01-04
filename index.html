@@ -5,37 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snekcoin Saga</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            background-color: #f0f0f0; 
-            margin: 0; 
-            padding: 20px;
-        }
-        #leaderboard {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+    
+    /* Basic reset for margin and padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Import the font that best matches the game's logo and theme */
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+ /* Ensures the html element covers the full height */
+html {
+    height: 100%;
+}
+
+/* Ensures the body element covers at least the full height */
+body { 
+    font-family: 'Righteous', cursive;
+    text-align: center; 
+    color: #ffffff; /* Adjust text color for better readability */
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+    height: 100%; /* Full height to ensure background covers viewport */
+    background-color: #f0f0f0; /* Fallback color */
+    background-image: url('background.png'); /* Link to your new background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixes the background image to the viewport */
+}
+
+
+    #leaderboard {
+    margin-top: 50px;
+    border: 3px solid #ffd700; /* Gold border to match the logo */
+    padding: 10px;
+    max-width: 600px; /* Adjust the width as needed */
+    background: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    color: #ffd700; /* Gold text color to match the logo */
+    text-align: center; /* Center the text */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#twitterShareBtn, #submitTwitterLinkBtn {
+    margin: 15px;
+    padding: 10px 20px;
+    background-color: #e63946; /* Twitter blue, adjust as needed */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#twitterShareBtn:hover, #submitTwitterLinkBtn:hover {
+    background-color: #63141a; /* Slightly darker on hover */
+}
+
+#twitterLinkInput {
+    width: 8%; /* Adjust as needed */
+    padding: 10px;
+    margin: 10px 0; /* Spacing above and below */
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Light grey border */
+}
+
+
+button {
+    margin: 15px;
+    padding: 10px 20px;
+    background-color: #e63946; /* Red background to match the logo */
+    color: #ffffff; /* White text for contrast */
+    border: none; /* No border for a modern look */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Readable text size */
+    cursor: pointer; /* Cursor indication for clickable items */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+button:hover {
+    background-color: #a82034; /* Darker red on hover for visual feedback */
+}
+
+
+    /* Additional styles for other elements will go here */
+    h1 {
+    padding-top: 70px; /* Top padding to push the content down below the fixed header */
+    color: #333; /* Text color */
+}
+/* Header styles */
+.header {
+    background: #1a1a1a; /* Dark background for the header */
+    padding: 20px 0; /* Vertical padding for the header */
+    position: fixed; /* Fix the header to the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* High z-index to ensure the header is above other content */
+    top: 0; /* Align to the top of the page */
+}
+
+/* Left Sidebar Styling */
+.left-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0; /* Align this sidebar to the left side */
+    width: 400px; /* Adjust the width as necessary */
+    background-image: url('sidebar.png'); /* Link to your left snake scale image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Right Sidebar Styling */
+.right-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0; /* Align this sidebar to the right side */
+    width: 400px; /* Adjust the width as necessary */
+    background-image: url('sidebar.png'); /* Link to your right snake scale image */
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+/* Content Styling */
+.content {
+    margin-left: 400px; /* This should be equal to the sidebar width */
+    margin-right: 400px; /* This should be equal to the sidebar width */
+    padding: 50px;
+}
+.social-links {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Center the social links */
+    width: 100%; /* Ensure the links span the full width of the container */
+    text-align: center;
+    padding: 20px;
+}
+/* Social Links Styling */
+.social-links {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.social-links a {
+    margin: 0 15px; /* Space out the social links */
+    color: #6d0e0b; /* Adjust color as needed */
+    text-decoration: none;
+    display: inline-block; /* Align icons and text */
+}
+
+.social-links img {
+    width: 48px; /* Adjust icon size as needed */
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: center; /* Center navbar items horizontally */
+    align-items: center; /* Center navbar items vertically */
+}
+
+/* Nav-link styles */
+.nav-link {
+    margin: 0 15px; /* Space out the links */
+    padding: 10px 20px;
+    text-decoration: none; /* Remove underline from links */
+    color: #ffd700; /* Gold text for readability and theme */
+    font-size: 1.2em; /* Slightly larger font size for navigation */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.nav-link:hover {
+    color: #e63946; /* Red color on hover to match the logo */
+}
+
+
+
+
     </style>
 </head>
 <body>
-    <h1>Welcome to the Blockchain Game</h1>
+<!-- Header Section -->
+<div class="header">
+ <!-- Navigation -->
+<div class="header">
+    <nav class="navbar">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="airdrop/airdrop.html">Airdrop</a>
+        <a class="nav-link" href="presale.html">Presale</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="index.html#socialSection">Contact</a>
+    </nav>
+</div>
+
+</div>
+<!-- End of Header Section -->
+<div class="content"></div>
+    <h1>SnekCoin Saga, The Blockchain Game</h1>
     <button id="connectWallet">Connect Wallet</button>
     <div id="leaderboard"><h2>Leaderboard</h2></div>
     <a href="game.html"><button>Play Game</button></a>
@@ -43,7 +220,27 @@
     <button id="twitterShareBtn" onclick="handleTwitterShare()">Share on Twitter</button>
 <input type="text" id="twitterLinkInput" placeholder="Enter Twitter link">
 <button onclick="submitTwitterLink()">Submit Twitter Link</button>
+</div>
+<!-- Left Sidebar -->
+<div class="left-sidebar">
+    <!-- Content for the left sidebar -->
+</div>
 
+<!-- Right Sidebar -->
+<div class="right-sidebar">
+    <!-- Content for the right sidebar -->
+
+</div>
+    <!-- Social Links Section -->
+    <div class="social-links" id="socialSection">
+        <a href="https://t.me/snekcoinsaga" target="_blank" title="Join us on Telegram">
+            <img src="telegram.png" alt="Telegram" /> Telegram
+        </a>
+        <a href="https://x.com/Snekcoinsaga" target="_blank" title="Follow us on X">
+            <img src="x.png" alt="X" /> X
+            </a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </a>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

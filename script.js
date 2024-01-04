@@ -40,7 +40,18 @@ document.getElementById('connectWallet').addEventListener('click', function() {
         alert('Ethereum wallet not found. Please install MetaMask.');
     }
 });
+// Disable the right-click context menu
+document.addEventListener('contextmenu', event => event.preventDefault());
 
+// Disable all keys except WASD, Enter, and arrow keys
+document.addEventListener('keydown', event => {
+    // Key codes: W(87), A(65), S(83), D(68), Enter(13), Arrow Keys(37-40)
+    const allowedKeys = [87, 65, 83, 68, 13, 37, 38, 39, 40];
+
+    if (!allowedKeys.includes(event.keyCode)) {
+        event.preventDefault();
+    }
+});
 
 // Additional script setup...
 
@@ -72,7 +83,7 @@ document.getElementById('twitterShareBtn').addEventListener('click', function() 
 function handleTwitterShare() {
     // Construct the Twitter share URL
     var url = "https://twitter.com/intent/tweet";
-    var text = "Check out SnekCoin Saga, an awesome blockchain game!"; // Your share message
+    var text = "Check out SnekCoin Saga, a blockchain game that recreates the classic Snake Xenzia! Play here https://snekcoinsaga.wtf"; // Your share message
     var hashtags = "SnekCoinSaga,$Hiss"; // Relevant hashtags
 
     var twitterUrl = `${url}?text=${encodeURIComponent(text)}&hashtags=${encodeURIComponent(hashtags)}`;

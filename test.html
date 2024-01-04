@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Distribution</title>
+</head>
+<body>
+    <h1>Reward Distribution for SnekCoin</h1>
+    <button id="calculateRewards">Calculate Rewards</button>
+    <button id="distributeRewards">Distribute Rewards</button>
+    <button id="resetScoresAndRewards">Reset data</button>
+
+    <script>
+        document.getElementById('calculateRewards').addEventListener('click', function() {
+            fetch('https://psychic-chainsaw-production.up.railway.app/calculate-rewards', {method: 'POST'}) // Adjust the URL as needed
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Rewards calculated:', data);
+                    alert('Rewards calculated successfully.');
+                })
+                .catch(error => console.error('Error calculating rewards:', error));
+        });
+
+        document.getElementById('distributeRewards').addEventListener('click', function() {
+            fetch('https://psychic-chainsaw-production.up.railway.app/distribute-rewards', {method: 'POST'}) // Adjust the URL as needed
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Rewards distributed:', data);
+                    alert('Rewards distributed successfully.');
+                })
+                .catch(error => console.error('Error distributing rewards:', error));
+        });
+
+        document.getElementById('resetScoresAndRewards').addEventListener('click', function() {
+            fetch('https://psychic-chainsaw-production.up.railway.app/reset-scores-rewards', {method: 'POST'}) // Adjust the URL as needed
+                .then(response => response.json())
+                .then(data => {
+                    console.log('data rest:', data);
+                    alert('data reset successful.');
+                })
+                .catch(error => console.error('Error resetting data:', error));
+        });
+    </script>
+</body>
+</html>

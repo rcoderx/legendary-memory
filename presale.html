@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnekCoin Saga Presale</title>
+    <!-- Add the same stylesheet link or style tags as in index.html for consistent styling -->
+<style>
+/* Basic reset for margin and padding, box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Import the font that best matches the game's logo and theme */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+    font-family: 'Righteous', cursive;
+    background-color: #f0f0f0; /* Adjust based on your site's theme */
+    color: #333; /* Text color */
+    line-height: 1.6; /* Adjust line height for readability */
+    text-align: left; /* Default text align left */
+}
+
+/* Header and Navigation Bar Styling */
+.header {
+    background: #1a1a1a; /* Dark background for the header */
+    padding: 20px 0; /* Vertical padding for the header */
+    position: fixed; /* Fix the header to the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* High z-index to ensure the header is above other content */
+    top: 0; /* Align to the top of the page */
+}
+
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: center; /* Center navbar items horizontally */
+    align-items: center; /* Center navbar items vertically */
+}
+
+/* Nav-link styles */
+.nav-link {
+    margin: 0 15px; /* Space out the links */
+    padding: 10px 20px;
+    text-decoration: none; /* Remove underline from links */
+    color: #ffd700; /* Gold text for readability and theme */
+    font-size: 1.2em; /* Slightly larger font size for navigation */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.nav-link:hover {
+    color: #e63946; /* Red color on hover to match the logo */
+}
+
+.content {
+    padding: 100px 20px 20px 20px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px; /* Add more bottom margin for space */
+}
+
+
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #4CAF50;
+    text-align: center;
+    line-height: 20px; /* Same as height */
+    color: white;
+    border-radius: 20px;
+}
+
+.presale-progress-section {
+    margin: 20px 0; /* Add space around the section */
+    /* Other styles if needed */
+}
+/* Copy Icon */
+.copy-icon {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    vertical-align: middle; /* Align with the text */
+}
+
+#ethAddress {
+    color: red; /* Makes the text red */
+    font-weight: bold; /* Makes the text bold */
+    margin: 20px 0; /* Adds 10px spacing above and below */
+    vertical-align: middle; /* Aligns with the copy icon */
+    text-align: center;
+    line-height: 4; /* Adjust line height for readability */
+}
+ol {
+    list-style: none; /* Removes the default list style */
+    padding: 0;
+    counter-reset: custom-counter; /* Initializes a counter */
+}
+
+ol li {
+    counter-increment: custom-counter; /* Increments the counter */
+    text-align: center; /* Centers the text */
+}
+
+ol li::before {
+    content: counter(custom-counter) ". "; /* Inserts the custom counter before the item */
+    font-weight: bold; /* Optional: Makes the number bold */
+    color: #333; /* Adjust color as needed */
+    /* Additional styles for positioning and appearance */
+}
+
+
+
+/* Text Styling Consistent with About Page */
+body {
+    font-family: 'Righteous', cursive; /* or your preferred font */
+    background-color: #f0f0f0; /* Adjust based on your site's theme */
+    color: #333; /* Text color */
+    background-image: url('background1.png'); /* Link to your new background image */
+    line-height: 1.6; /* Adjust line height for readability */
+}
+
+ h2 {
+    text-align: center;
+    color: #e63946; /* Adjust to match your theme's color */
+}
+
+p, li {
+    text-align: center;
+    color: #333; /* Text color */
+    margin-bottom: 10px; /* Consistent bottom margin */
+}
+
+/* Adjust link color to match theme */
+a {
+    color: #6d0e0b; /* Gold color to match theme */
+}
+
+a:hover {
+    color: #e63946; /* Red color on hover to match theme */
+}
+/* Social Links Styling */
+.social-links {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.social-links a {
+    margin: 0 15px; /* Space out the social links */
+    color: #6d0e0b; /* Adjust color as needed */
+    text-decoration: none;
+    display: inline-block; /* Align icons and text */
+}
+
+.social-links img {
+    width: 48px; /* Adjust icon size as needed */
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+
+
+
+</style>
+</head>
+<body>
+    <!-- Navigation (similar to index.html) -->
+    <div class="header">
+        <!-- Navigation -->
+<div class="header">
+    <nav class="navbar">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="airdrop/airdrop.html">Airdrop</a>
+        <a class="nav-link" href="presale.html">Presale</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="index.html#socialSection">Contact</a>
+    </nav>
+</div>
+
+    </div>
+
+    <div class="content">
+        <h1>SnekCoin Saga Presale</h1>
+
+        <p>Before Proceeding, kindly read the <a href="about.html">Disclaimer in the About Section</a>.</p>
+
+        <!-- Presale Information -->
+        <section>
+            <h2>Presale Information</h2>
+            <p>Amount: 1,000,000 $HISS (10% Total Supply)</p>
+            <p>Price: 1 ETH = 50,000 $HISS</p>
+            <p>Soft Cap: 10 ETH</p>
+            <p>Hard Cap: 20 ETH</p>
+            <p>Minimum Buy: 0.05 ETH</p>
+            <p>Start Date: 04-01-2024</p>
+            <p>End Date: 07-01-2024 or Hardcap Reached</p>
+            <p>Launch Date(Uniswap Day): 08-01-2024</p>
+        </section>
+
+        <!-- How to Participate -->
+        <section>
+            <h2>How to Participate</h2>
+            <ol>
+                <li>Set up your Custodial wallet (Metamask, Trust wallet, Ledger, Etc)</li>
+                <li>Send ETH to the address Below:</li>
+                <!-- Copy Ethereum Address -->
+<h2 id="ethAddress">
+    0x7B348F00484B06Cb1D213c6eF72f4B24596C2c75 
+    <img src="copy.png" alt="Copy Address" class="copy-icon" onclick="copyToClipboard()" />
+</h2>
+
+                <li>You will automatically receive $HISS Token and Qualify for Presale Airdrop.</li>
+            </ol>
+            <p>Warning: Do Not Send Directly From Exchange Because We Will Send The $HISS address to The Wallet We Received ETH From, But if you did, contact us on telegram or X(Formerly Twitter)</p>
+        </section>
+
+        <!-- Progress Bar -->
+        <!-- Presale Progress Bar -->
+<!-- Presale Progress Section -->
+<section class="presale-progress-section">
+    <h2>Presale Progress</h2>
+    <div class="progress-container">
+        <div class="progress-bar" style="width: 20%;">In Progress</div>
+    </div>
+</section>
+
+
+        <!-- Perks of Presale -->
+        <section>
+            <h2>Perks of Presale</h2>
+            <ol>
+                <li>Qualify for airdrop, Both Token and NFT</li>
+                <li>Advantage of being early</li>
+                <li>Will make key decisions in community</li>
+                <li>First Access to Any Games/products Before Public Launch</li>
+            </ol>
+        </section>
+
+        <p>Follow us on <a href="https://t.me/YourTelegram">Telegram</a> and <a href="https://twitter.com/YourTwitter">X formerly Twitter</a>.</p>
+
+    </div>
+
+       <!-- Social Links Section -->
+       <div class="social-links" id="socialSection">
+        <a href="https://t.me/snekcoinsaga" target="_blank" title="Join us on Telegram">
+            <img src="telegram.png" alt="Telegram" /> Telegram
+        </a>
+        <a href="https://x.com/Snekcoinsaga" target="_blank" title="Follow us on X">
+            <img src="x.png" alt="X" /> X
+            </a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </a>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("ethAddress").innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert('Ethereum address copied to clipboard!');
+            })
+            .catch(function(error) {
+                alert('Error in copying text: ' + error);
+            });
+        }
+        </script>
+</body>
+</html>

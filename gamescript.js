@@ -7,6 +7,21 @@ const ctx = canvas.getContext('2d');
 const grid = 20;
 let speed = 2;
 
+
+// Disable the right-click context menu
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Disable all keys except WASD, Enter, and arrow keys
+document.addEventListener('keydown', event => {
+    // Key codes: W(87), A(65), S(83), D(68), Enter(13), Arrow Keys(37-40)
+    const allowedKeys = [87, 65, 83, 68, 13, 37, 38, 39, 40];
+
+    if (!allowedKeys.includes(event.keyCode)) {
+        event.preventDefault();
+    }
+});
+
+
 let bobbingAmount = 0;
 let bobbingDirection = 1;
 let highScore = localStorage.getItem('highScore') || 0;
@@ -140,7 +155,7 @@ function resetGame() {
 }
 
 function clearCanvas() {
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#080101';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -188,14 +203,16 @@ function advanceSnake() {
     snake.unshift(head);  // Add the new head to the snake
 }
 function createFood() {
+    const wallThickness = 15; // Thickness of the wall
+
     food = {
-        x: Math.floor((Math.random() * ((canvas.width - grid) / grid))) * grid,
-        y: Math.floor((Math.random() * ((canvas.height - grid) / grid))) * grid
+        x: Math.floor((Math.random() * ((canvas.width - grid - wallThickness * 2) / grid))) * grid + wallThickness,
+        y: Math.floor((Math.random() * ((canvas.height - grid - wallThickness * 2) / grid))) * grid + wallThickness
     };
 
     // Check if food is spawned on the snake
     snake.forEach(function(part) {
-        const foodIsOnSnake = part.x == food.x && part.y == food.y;
+        const foodIsOnSnake = part.x === food.x && part.y === food.y;
         if (foodIsOnSnake)
             createFood();
     });
@@ -253,7 +270,7 @@ function updateScoreAndLives() {
 
 
 function drawWalls() {
-    ctx.strokeStyle = 'Red';
+    ctx.strokeStyle = '#970505';
     ctx.lineWidth = 15;
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }
@@ -261,27 +278,33 @@ function drawWalls() {
 function changeDirection(event) {
     const keyPressed = event.keyCode;
     const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40;
+    const W_KEY = 87, A_KEY = 65, S_KEY = 83, D_KEY = 68;
 
     const goingUp = dy === -grid;
     const goingDown = dy === grid;
     const goingRight = dx === grid;
     const goingLeft = dx === -grid;
 
-    if (goingDown && (keyPressed === UP_KEY || keyPressed === DOWN_KEY)) {
-        // Ignore up or down key when going down
+    if (goingDown && (keyPressed === UP_KEY || keyPressed === W_KEY)) {
+        // Ignore up key or W key when going down
         return;
     }
 
-    if ((keyPressed === LEFT_KEY) && !goingRight) {
+    if (goingUp && (keyPressed === DOWN_KEY || keyPressed === S_KEY)) {
+        // Ignore down key or S key when going up
+        return;
+    }
+
+    if ((keyPressed === LEFT_KEY || keyPressed === A_KEY) && !goingRight) {
         dx = -grid;
         dy = 0;
-    } else if ((keyPressed === UP_KEY) && !goingDown) {
+    } else if ((keyPressed === UP_KEY || keyPressed === W_KEY) && !goingDown) {
         dx = 0;
         dy = -grid;
-    } else if ((keyPressed === RIGHT_KEY) && !goingLeft) {
+    } else if ((keyPressed === RIGHT_KEY || keyPressed === D_KEY) && !goingLeft) {
         dx = grid;
         dy = 0;
-    } else if ((keyPressed === DOWN_KEY) && !goingUp) {
+    } else if ((keyPressed === DOWN_KEY || keyPressed === S_KEY) && !goingUp) {
         dx = 0;
         dy = grid;
     }

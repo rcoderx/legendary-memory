@@ -5,10 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnekCoin Saga</title>
     <style>
+  
+  .header {
+    background: #1a1a1a; /* Dark background for the header */
+    padding: 20px 0; /* Vertical padding for the header */
+    position: fixed; /* Fix the header to the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* High z-index to ensure the header is above other content */
+    top: 0; /* Align to the top of the page */
+}
+
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: center; /* Center navbar items horizontally */
+    align-items: center; /* Center navbar items vertically */
+}
+
+/* Nav-link styles */
+.nav-link {
+    margin: 0 15px; /* Space out the links */
+    padding: 10px 20px;
+    text-decoration: none; /* Remove underline from links */
+    color: #ffd700; /* Gold text for readability and theme */
+    font-size: 1.2em; /* Slightly larger font size for navigation */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.nav-link:hover {
+    color: #e63946; /* Red color on hover to match the logo */
+}
+
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #ffd700 0%, #b7974c 100%); /* Golden gradient */
+            background: linear-gradient(180deg, #ffffff 0%, #b7974c 100%); /* Golden gradient */
             text-align: center; /* Center content */
         }
         #gameContainer {
@@ -17,21 +49,44 @@
             width: 800px; /* Match canvas width for alignment */
         }
         canvas {
-            background-color: #000;
+            background-color: #080101;
             display: block;
             margin: 20px auto; /* Center canvas and add space around it */
-            border: 5px solid red; /* Red border for the canvas */
-            box-shadow: 0 0 20px red; /* Subtle glow for the canvas */
+            border: 1px solid #ffd700; /* Red border for the canvas */
+            box-shadow: 0 0 20px rgb(10, 1, 1); /* Subtle glow for the canvas */
         }
-        button {
-            padding: 10px;
-            font-size: 18px;
-            margin: 10px;
-            display: block; /* Show the start button */
-        }
-        #restartButton {
-            display: none; /* Hide the restart button initially */
-        }
+        /* Basic button styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Righteous', cursive; /* Consistent with your theme */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none; /* Removes the default focus outline */
+}
+
+/* Start button specific styles */
+#startButton {
+    background-color: #b81111; /* Green background */
+    color: white;
+}
+
+#startButton:hover {
+    background-color: #3d1010; /* Darker shade on hover */
+}
+
+/* Restart button specific styles */
+#restartButton {
+    background-color: #b81111; /* Red background */
+    color: white;
+}
+
+#restartButton:hover {
+    background-color: #3d1010; /* Darker shade on hover */
+}
+
         p {
             color: #fff; /* Ensure score is visible against the background */
         }
@@ -43,9 +98,65 @@
     .bird {
         animation: bobbing 2s ease-in-out infinite;
     }
+
+    .game-info {
+    background: #000000; /* White background */
+    color: #333; /* Dark text color */
+    border: 2px solid #ffd700; /* Golden border similar to leaderboard */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    margin: 20px auto; /* Margin for spacing around the container */
+    max-width: 800px; /* Matching game container width */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+    text-align: left; /* Align text to the left */
+}
+
+.game-info h3 {
+    color: #e63946; /* Color inspired by the logo for headings */
+    margin-bottom: 10px; /* Space below heading */
+}
+.game-info {
+    margin-top: 100px; /* Adjust this value to match your header's height */
+    /* other styles */
+}
+
+
+.game-info p {
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+body {
+    background-color: #ffffff; /* Set to your original background color */
+    /* other styles */
+}
+
+
+
     </style>
 </head>
 <body>
+       <!-- Navigation (similar to index.html) -->
+       <div class="header">
+        <!-- Navigation -->
+<div class="header">
+    <nav class="navbar">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="airdrop/airdrop.html">Airdrop</a>
+        <a class="nav-link" href="presale.html">Presale</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="index.html#socialSection">Contact</a>
+    </nav>
+</div>
+       </div>
+
+       <!-- Instructions and Gameplay Information Section -->
+<div class="game-info">
+    <h3>How to Play</h3>
+    <p>Ensure you have wallet connected. You can Select any of the Three Avatars. Control your snake avatar to collect food and grow longer. Avoid colliding with the walls and your own tail!</p>
+    
+    <h3>Getting More Lives</h3>
+    <p>Players receive 10 lives daily. You can earn additional lives by sharing the game on Twitter (10 lives per share). You can go to homepage to complete this task. Share the tweet, copy the tweet link and submit. Viola!</p>
+</div>
+
     <h2>Choose Your Snake Avatar</h2>
     <div id="avatars">
         <div>
@@ -61,10 +172,11 @@
             <p>Avatar 3</p> <!-- Name for Avatar 3 -->
         </div>
     </div>
-    
+ 
+
+
 <body>
     <div id="gameContainer">
-        <h1 style="color: #fff;">SnekCoin Saga</h1> <!-- Game title -->
         <button id="startButton" onclick="checkLivesAndStartGame()">Start Game</button>
         <button id="restartButton" style="display: none;" onclick="checkLivesAndStartGame()">Restart Game</button>
         <canvas id="gameCanvas" width="800" height="800"></canvas>
