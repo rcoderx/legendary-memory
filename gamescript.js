@@ -238,14 +238,15 @@ function isFoodOnSnake(food) {
 }
 
 function isFoodOnWall(food, wallThickness) {
-    // Check if food is too close to the walls
+    // Check if food is directly on the wall
     return (
         food.x < wallThickness || 
         food.y < wallThickness || 
-        food.x > canvas.width - gridSize - wallThickness || 
-        food.y > canvas.height - gridSize - wallThickness
+        food.x >= canvas.width - wallThickness || 
+        food.y >= canvas.height - wallThickness
     );
 }
+
 
 
 
@@ -303,7 +304,7 @@ function updateScoreAndLives() {
 
 function drawWalls() {
     ctx.strokeStyle = '#970505';
-    ctx.lineWidth = 15;
+    ctx.lineWidth = 20;
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }
 
