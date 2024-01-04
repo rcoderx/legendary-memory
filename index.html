@@ -74,6 +74,14 @@ body {
     border-radius: 5px;
     border: 1px solid #ddd; /* Light grey border */
 }
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    /* Assuming .twitter-link-box is the class for your input box */
+    .twitter-link-box {
+        width: 90%; /* Make width responsive */
+        margin: 10px auto; /* Center it within the container */
+    }
+}
 
 
 button {
@@ -182,6 +190,22 @@ button:hover {
     vertical-align: middle;
     margin-right: 8px;
 }
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .social-links {
+        display: flex;
+        justify-content: center; /* Center the links */
+        flex-wrap: wrap; /* Wrap onto the next line as needed */
+        gap: 10px; /* Spacing between items */
+    }
+
+    .social-link {
+        /* Individual social link adjustments as needed */
+        padding: 5px; /* Adjust padding */
+        font-size: smaller; /* Adjust font size */
+    }
+}
+
 
 /* Navbar styles */
 .navbar {
@@ -203,6 +227,21 @@ button:hover {
 .nav-link:hover {
     color: #e63946; /* Red color on hover to match the logo */
 }
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    /* Adjust navbar layout or font sizes for smaller screens */
+    .navbar {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center-align items */
+    }
+
+    .nav-link {
+        padding: 10px; /* Adjust padding for touch targets */
+        font-size: smaller; /* Adjust font size */
+    }
+}
+
+
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
       /* Example adjustments for mobile */
@@ -211,10 +250,12 @@ button:hover {
         background-image: url('background.png');
 
       }
-      h1, h2, h3, p {
+       h2, h3, p {
         font-size: 14px;
       }
-      
+      h1 {
+        font-size: 30px
+      }
       .content {
         margin: 10px;
       }
