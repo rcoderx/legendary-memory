@@ -204,20 +204,36 @@ function advanceSnake() {
     console.log("Ate Food! Score: ", score, "New Speed: ", speed);
 }
 function createFood() {
-    const wallThickness = 15; // Thickness of the wall
+    const wallThickness = 10; // Thickness of the wall
 
+    // Calculate the position of the food so it's on the grid and within the walls
     food = {
-        x: Math.floor((Math.random() * ((canvas.width - grid - wallThickness * 2) / grid))) * grid + wallThickness,
-        y: Math.floor((Math.random() * ((canvas.height - grid - wallThickness * 2) / grid))) * grid + wallThickness
+        x: Math.floor(Math.random() * ((canvas.width - 2 * wallThickness) / grid)) * grid + wallThickness,
+        y: Math.floor(Math.random() * ((canvas.height - 2 * wallThickness) / grid)) * grid + wallThickness
     };
 
-    // Check if food is spawned on the snake
-    snake.forEach(function(part) {
-        const foodIsOnSnake = part.x === food.x && part.y === food.y;
-        if (foodIsOnSnake)
-            createFood();
+    // Check if food is spawned on the snake or on the walls
+    if (isFoodOnSnake(food) || isFoodOnWall(food, wallThickness)) {
+        createFood();  // Recreate the food if it's on the snake or wall
+    }
+}
+
+function isFoodOnSnake(food) {
+    return snake.some(function(part) {
+        return part.x === food.x && part.y === food.y;
     });
 }
+
+function isFoodOnWall(food, wallThickness) {
+    // Check if food is too close to the walls
+    return (
+        food.x < wallThickness || 
+        food.y < wallThickness || 
+        food.x > canvas.width - grid - wallThickness || 
+        food.y > canvas.height - grid - wallThickness
+    );
+}
+
 
 
 function drawSnake() {
