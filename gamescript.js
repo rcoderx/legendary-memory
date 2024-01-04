@@ -15,6 +15,8 @@ function isMobileDevice() {
 };
 
 
+
+
 // Disable the right-click context menu
 document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -123,12 +125,12 @@ startButton.addEventListener('click', function() {
         canvas.height = window.innerHeight;
 
         // Increase snake and bird size for mobile
-        const scaleFactor = 1.5; // Adjust this factor to scale size
+        const scaleFactor = 1.2; // Adjust this factor to scale size
         grid *= scaleFactor; // Increase grid size which will increase the size of snake and bird
 
         // Optionally, zoom or adjust the viewport
         // You might need to adjust or reset these values when switching back to desktop view
-        document.body.style.zoom = 1.5; // Zoom in the body, you might want to adjust this value
+        document.body.style.zoom = 1.2; // Zoom in the body, you might want to adjust this value
     }
 
     window.requestAnimationFrame(main);
