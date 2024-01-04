@@ -91,7 +91,11 @@ h1 {
     width: 20px; /* Adjust the size as needed */
     height: 20px; /* Adjust the size as needed */
     vertical-align: middle; /* Align with the text */
+    cursor: pointer;
+    margin-left: 10px; /* Creates space between the address and the icon */
 }
+
+
 
 #ethAddress {
     color: red; /* Makes the text red */
@@ -100,7 +104,27 @@ h1 {
     vertical-align: middle; /* Aligns with the copy icon */
     text-align: center;
     line-height: 4; /* Adjust line height for readability */
+
+    display: flex; /* Aligns children inline */
+    justify-content: center; /* Center align children */
+    align-items: center; /* Vertically aligns children to middle */
+    text-align: center;
+    margin: 20px 0; /* Retain some spacing */
+    padding: 0 10px; /* Add padding on smaller screens */
+    font-weight: bold; /* Keeps the text bold */
 }
+
+@media only screen and (max-width: 600px) {
+    #ethAddress {
+        flex-direction: column; /* Stack icon and address on smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+    .copy-icon {
+        margin: 10px 0; /* Adjust spacing for a vertical layout */
+    }
+}
+
+
 ol {
     list-style: none; /* Removes the default list style */
     padding: 0;
