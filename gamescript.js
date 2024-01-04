@@ -10,6 +10,11 @@ const grid = 20;
 let speed = 2;
 
 
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+
 // Disable the right-click context menu
 document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -107,11 +112,28 @@ window.requestAnimationFrame(main); // Start the game loop
 
 // Start and Restart Button Event Listeners
 startButton.addEventListener('click', function() {
-    gameInProgress = false;
+    gameInProgress = true;
     startButton.style.display = 'none'; // Hide Start button
     backgroundMusic.play(); // Play the background music
+
+    // Check if it's a mobile device
+    if(isMobileDevice()) {
+        // Adjust canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Increase snake and bird size for mobile
+        const scaleFactor = 1.5; // Adjust this factor to scale size
+        grid *= scaleFactor; // Increase grid size which will increase the size of snake and bird
+
+        // Optionally, zoom or adjust the viewport
+        // You might need to adjust or reset these values when switching back to desktop view
+        document.body.style.zoom = 1.5; // Zoom in the body, you might want to adjust this value
+    }
+
     window.requestAnimationFrame(main);
 });
+
 
 
 
