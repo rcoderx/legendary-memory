@@ -174,14 +174,35 @@ button:hover {
     padding: 50px;
 }
 .social-links {
-    position: absolute;
+position:absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%); /* Center the social links */
     width: 100%; /* Ensure the links span the full width of the container */
     text-align: center;
     padding: 20px;
+    margin-bottom: 40px; /* Space between social links and credits */
 }
+
+.credits {
+    display: block;  /* Keeping it as block, but flex would work too */
+    text-align: center;
+    position: absolute;
+    left: 50%; /* Centers the div */
+    bottom: 0; /* Aligns to the bottom */
+    transform: translate(-50%, 0); /* Adjusts the centering by moving it back by half its width */
+    width: auto; /* Adjust width to content or a specific percentage */
+    padding: 20px; /* Adjust padding as needed */
+    
+}
+
+
+
+
+
+
+
+
 /* Social Links Styling */
 .social-links {
     text-align: center;
@@ -213,18 +234,51 @@ button:hover {
 /* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
     .social-links {
-        flex-direction: row; /* Keep links in a row on mobile */
+        display: flex;
         justify-content: center; /* Center the links */
-        flex-wrap: wrap; /* Wrap links to next line if not enough space */
+        flex-wrap: wrap; /* Wrap onto the next line as needed */
+        gap: 10px; /* Spacing between items */
+        padding: 10px 0; /* Padding around the social links section */
     }
 
     .social-links a {
-        margin: 5px; /* Spacing around each link */
-        /* Adjust the width or padding if needed for better tap targets */
+        flex: 1; /* Allow links to share available space */
+        min-width: 50px; /* Minimum width for tap targets */
+        padding: 5px 10px; /* Padding around each link */
     }
 }
 
+.credits a {
+    margin: 0 15px; /* Space out the social links */
+    color: #6d0e0b; /* Adjust color as needed */
+    text-decoration: none;
+    display: inline-block; /* Align icons and text */
+}
 
+.credits {
+    display: flex;
+    justify-content: center; /* Center the links */
+    flex-wrap: wrap; /* Allow the links to wrap */
+    gap: 10px; /* Spacing between items */
+    /*... other styles ...*/
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .credits {
+        display: flex;
+        justify-content: center; /* Center the links */
+        flex-wrap: wrap; /* Wrap onto the next line as needed */
+        gap: 10px; /* Spacing between items */
+        padding: 10px 0; /* Padding around the social links section */
+    }
+
+    .credits a {
+        flex: 1; /* Allow links to share available space */
+        min-width: 50px; /* Minimum width for tap targets */
+        padding: 5px 10px; /* Padding around each link */
+    }
+}
 
 
 /* Navbar styles */
@@ -256,7 +310,7 @@ button:hover {
     }
 
     .nav-link {
-        padding: 8px; /* Adjust padding for touch targets */
+        padding: 5px; /* Adjust padding for touch targets */
         font-size: smaller; /* Adjust font size */
     }
 }
@@ -275,7 +329,14 @@ button:hover {
       }
       h1 {
         font-size: 30px 
+        
       }
+      /* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    h1 {
+        padding-top: 20px; /* Reduced top padding for mobile */
+    }
+}
       .content {
         margin: 10px;
       }
@@ -333,8 +394,12 @@ button:hover {
         </a>
         <a href="https://x.com/Snekcoinsaga" target="_blank" title="Follow us on X">
             <img src="x.png" alt="X" /> X
-            </a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+            
         </a>
+    </div>
+        <div class ="credits" id ="credits">
+        </a> icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
