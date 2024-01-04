@@ -83,6 +83,7 @@ body {
     }
 }
 
+
 button {
     margin: 15px;
     padding: 10px 20px;
@@ -105,6 +106,17 @@ button:hover {
     padding-top: 70px; /* Top padding to push the content down below the fixed header */
     color: #333; /* Text color */
 }
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    #twitterLinkInput, #twitterShareBtn, #submitTwitterLinkBtn {
+        width: 90%; /* Responsive width */
+        margin: 5px auto; /* Center it within the container */
+        display: block; /* Stack elements */
+    }
+}
+
+
 /* Header styles */
 .header {
     background: #1a1a1a; /* Dark background for the header */
@@ -189,21 +201,30 @@ button:hover {
     vertical-align: middle;
     margin-right: 8px;
 }
+/* Original Social Link Styling */
+.social-links {
+    display: flex;
+    justify-content: center; /* Center the links */
+    flex-wrap: wrap; /* Allow the links to wrap */
+    gap: 10px; /* Spacing between items */
+    /*... other styles ...*/
+}
+
 /* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
     .social-links {
-        display: flex;
+        flex-direction: row; /* Keep links in a row on mobile */
         justify-content: center; /* Center the links */
-        flex-wrap: wrap; /* Wrap onto the next line as needed */
-        gap: 10px; /* Spacing between items */
+        flex-wrap: wrap; /* Wrap links to next line if not enough space */
     }
 
-    .social-link {
-        /* Individual social link adjustments as needed */
-        padding: 5px; /* Adjust padding */
-        font-size: smaller; /* Adjust font size */
+    .social-links a {
+        margin: 5px; /* Spacing around each link */
+        /* Adjust the width or padding if needed for better tap targets */
     }
 }
+
+
 
 
 /* Navbar styles */
@@ -235,7 +256,7 @@ button:hover {
     }
 
     .nav-link {
-        padding: 10px; /* Adjust padding for touch targets */
+        padding: 8px; /* Adjust padding for touch targets */
         font-size: smaller; /* Adjust font size */
     }
 }
@@ -253,7 +274,7 @@ button:hover {
         font-size: 14px;
       }
       h1 {
-        font-size: 30px
+        font-size: 30px 
       }
       .content {
         margin: 10px;
