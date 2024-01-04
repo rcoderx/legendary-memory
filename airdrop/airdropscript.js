@@ -50,7 +50,7 @@ function submitForm() {
     const jsonData = JSON.stringify(formData);
     console.log('Data being sent to the server:', formData);
 
-    fetch('https://automatic-octo-fortnight-production.up.railway.app/submit', {
+    fetch('https://jubilant-potato-production.up.railway.app/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ function fetchReferralCount() {
         return;
     }
 
-    fetch(`https://automatic-octo-fortnight-production.up.railway.app/referrals/${userAddress}`)
+    fetch(`https://jubilant-potato-production.up.railway.app/referrals/${userAddress}`)
     .then(response => response.json())
     .then(data => {
         alert(`Total referrals: ${data.referralCount}`);
@@ -113,7 +113,7 @@ function generateReferralLink() {
 
 function exportToCSV() {
     // Trigger a GET request to the /export-csv endpoint
-    fetch('https://automatic-octo-fortnight-production.up.railway.app/export-csv')
+    fetch('https://jubilant-potato-production.up.railway.app/export-csv')
         .then(response => {
             if (response.ok) {
                 // If the export is successful, prompt the user to download the CSV
