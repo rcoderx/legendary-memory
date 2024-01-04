@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure proper scaling -->
     <title>Snekcoin Saga</title>
     <style>
     
@@ -188,6 +189,28 @@ button:hover {
 .nav-link:hover {
     color: #e63946; /* Red color on hover to match the logo */
 }
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+      /* Example adjustments for mobile */
+      body {
+        background-color: #f4f4f4;
+        background-image: url('background.png');
+
+      }
+      h1, h2, h3, p {
+        font-size: 14px;
+      }
+      .sidebar {
+        display: none;
+      }
+      .content {
+        margin: 10px;
+      }
+      .button {
+        padding: 15px 30px;
+        font-size: 18px;
+      }
+    }
 
 
 
