@@ -233,20 +233,17 @@ position:absolute;
 
 /* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
-    .social-links {
-        display: flex;
-        justify-content: center; /* Center the links */
-        flex-wrap: wrap; /* Wrap onto the next line as needed */
-        gap: 40px; /* Spacing between items */
-        padding: 10px 0; /* Padding around the social links section */
-    }
-
     .social-links a {
-        flex: 1; /* Allow links to share available space */
-        min-width: 50px; /* Minimum width for tap targets */
-        padding: 5px 10px; /* Padding around each link */
+        margin: 0 5px; /* Adjust spacing between icons */
+        padding: 10px; /* Padding around icons for easier tapping */
+        display: inline-block; /* Ensure they line up horizontally */
+    }
+    .social-links {
+        justify-content: center; /* Center the links container */
+        flex-wrap: wrap; /* Allow icons to wrap to next line if space is constrained */
     }
 }
+
 
 .credits a {
     margin: 0 15px; /* Space out the social links */
@@ -266,19 +263,12 @@ position:absolute;
 /* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
     .credits {
-        display: flex;
-        justify-content: center; /* Center the links */
-        flex-wrap: wrap; /* Wrap onto the next line as needed */
-        gap: 20px; /* Spacing between items */
-        padding: 10px 0; /* Padding around the social links section */
-    }
-
-    .credits a {
-        flex: 1; /* Allow links to share available space */
-        min-width: 50px; /* Minimum width for tap targets */
-        padding: 5px 10px; /* Padding around each link */
+        font-size: 12px; /* Adjust font size for readability */
+        margin: 20px 0; /* Provide vertical space above and below */
+        text-align: center; /* Center-align the text */
     }
 }
+
 
 
 /* Navbar styles */
