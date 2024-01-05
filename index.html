@@ -50,6 +50,14 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+@media only screen and (max-width: 768px) {
+    #leaderboard {
+        width: 90%; /* Make it occupy the majority of the screen width */
+        margin: 10px auto 20px; /* Center it and provide space around */
+        padding: 15px; /* Adjust padding for visibility */
+    }
+}
+
 
 #twitterShareBtn, #submitTwitterLinkBtn {
     margin: 15px;
@@ -107,14 +115,23 @@ button:hover {
     color: #333; /* Text color */
 }
 
-/* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
-    #twitterLinkInput, #twitterShareBtn, #submitTwitterLinkBtn {
-        width: 90%; /* Responsive width */
-        margin: 5px auto; /* Center it within the container */
-        display: block; /* Stack elements */
+    #twitterShareBtn, #submitTwitterLinkBtn {
+        width: auto; /* Let it size according to content */
+        margin: 10px auto; /* Center and provide space between buttons */
+        padding: 12px 20px; /* Padding for easier interaction */
+        display: block; /* Stack buttons vertically */
     }
 }
+@media only screen and (max-width: 768px) {
+    #twitterLinkInput {
+        width: 80%; /* Adjust width to prevent overflow */
+        margin: 10px auto; /* Center it and provide vertical space */
+        padding: 12px; /* Make it easy to interact with */
+        display: block; /* Ensure it's on its own line */
+    }
+}
+
 
 
 /* Header styles */
@@ -317,16 +334,15 @@ position:absolute;
        h2, h3, p {
         font-size: 14px;
       }
-      h1 {
-        font-size: 30px 
-        
-      }
-      /* Media Query for Mobile Devices */
-@media only screen and (max-width: 768px) {
+
+      @media only screen and (max-width: 768px) {
     h1 {
-        padding-top: 20px; /* Reduced top padding for mobile */
+        padding-top: 20px; /* Adjust padding to give space from the top */
+        font-size: 24px; /* Adjust font size for smaller screens */
+        margin-bottom: 20px; /* Provide space between heading and next element */
     }
 }
+
       .content {
         margin: 10px;
       }
