@@ -17,25 +17,28 @@
     @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
  /* Ensures the html element covers the full height */
-html {
-    height: 100%;
+ html {
+    height: 100%; /* Ensures html element covers the full height initially */
 }
 
-/* Ensures the body element covers at least the full height */
-body { 
-    font-family: 'Righteous', Arial, sans-serif;
-    text-align: center; 
-    color: #ffffff; /* Adjust text color for better readability */
-    margin: 0; /* Reset default margin */
-    padding: 0; /* Reset default padding */
-    height: 100%; /* Full height to ensure background covers viewport */
+body {
+    min-height: 100vh; /* Ensure body is at least as tall as the viewport */
+    height: auto; /* Allow the body to expand as needed */
     background-color: #f0f0f0; /* Fallback color */
-    background-image: url('background.png'); /* Link to your new background image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Fixes the background image to the viewport */
+    background-image: url('background.png'); /* Your background image */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-attachment: scroll; /* Keep the background fixed or use scroll if you want it to move */
 }
+
+/* Ensure other elements do not unnecessarily restrict the size of the body */
+.content, .social-links, .credits {
+    width: auto; /* Allow natural width */
+    max-width: 100%; /* Prevent overflow */
+    /* Additional padding or margin adjustments */
+}
+
 
 
     #leaderboard {
