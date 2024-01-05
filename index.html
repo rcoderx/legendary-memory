@@ -246,11 +246,17 @@ position:absolute;
 
 @media only screen and (max-width: 768px) {
     body {
-        height: auto; /* Make the body height adjust to the content */
+        height: auto; /* Let the body height adjust to the content */
         min-height: 100vh; /* At least full viewport height */
-        background-attachment: scroll; /* Background scrolls with the content */
+        background-color: #f0f0f0; /* Same as your original fallback color */
+        background-image: url('background.png'); /* Continue using your background */
+        background-size: cover; /* Cover the entire viewport */
+        background-position: center; /* Center the background */
+        background-repeat: no-repeat; /* No repeating of background */
+        background-attachment: scroll; /* Background moves with scroll */
     }
 }
+
 @media only screen and (max-width: 768px) {
     h1 {
         font-size: 24px; /* Adjust for readability */
