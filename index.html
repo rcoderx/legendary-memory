@@ -245,44 +245,45 @@ position:absolute;
 }
 
 @media only screen and (max-width: 768px) {
-    /* Allow body to grow based on content, making the background scrollable */
     body {
-        min-height: 100vh; /* Ensure it's at least the height of the viewport */
-        height: auto; /* Adjust height based on content */
-        background-attachment: scroll; /* Allow background to scroll with the content */
-    }
-
-    /* Heading h1 - Center and space out */
-    h1 {
-        font-size: 24px; /* Adjust font size for smaller screens */
-        margin: 20px 0; /* Provide space from top and bottom */
-        padding: 0 10px; /* Ensure text doesn't touch the edges */
-    }
-
-    /* Leaderboard Section - Center and space out */
-    #leaderboard {
-        width: 90%; /* Make it occupy the majority of the screen width */
-        margin: 10px auto; /* Center it with auto margins and provide vertical spacing */
-        padding: 10px; /* Adjust padding for visibility */
-    }
-
-    /* Twitter Share and Submit Buttons - Ensure they are easily tappable and spaced */
-    #twitterShareBtn, #submitTwitterLinkBtn {
-        width: auto; /* Let it size according to content */
-        margin: 10px auto; /* Center and provide space between buttons */
-        padding: 12px 20px; /* Padding for easier interaction */
-        display: block; /* Stack buttons vertically */
-    }
-
-    /* Twitter Link Input - Ensure it is easily tappable and doesn't overflow */
-    #twitterLinkInput {
-        width: 80%; /* Adjust width to fit mobile screen */
-        margin: 10px auto; /* Center and provide vertical space */
-        padding: 12px; /* Make it easy to interact with */
-        display: block; /* Ensure it's on its own line */
+        height: auto; /* Make the body height adjust to the content */
+        min-height: 100vh; /* At least full viewport height */
+        background-attachment: scroll; /* Background scrolls with the content */
     }
 }
-
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px; /* Adjust for readability */
+        margin: 20px 0; /* Space from top and next elements */
+        padding: 0 10px; /* Avoid touching the edges */
+    }
+}
+@media only screen and (max-width: 768px) {
+    #leaderboard {
+        width: 90%; /* Responsive width */
+        margin: 20px auto; /* Vertical space and centering */
+        padding: 10px; /* Internal spacing */
+    }
+}
+@media only screen and (max-width: 768px) {
+    #twitterShareBtn,
+    #submitTwitterLinkBtn,
+    #twitterLinkInput {
+        width: 80%; /* Uniform width for a clean look */
+        margin: 10px auto; /* Spacing and centering */
+        padding: 12px; /* Tappable area */
+        display: block; /* Stack vertically */
+    }
+}
+@media only screen and (max-width: 768px) {
+    .social-links,
+    .credits {
+        position: absolute; /* Positioning relative to flow */
+        clear: both; /* Avoid floating elements from previous content */
+        padding-top: 20px; /* Space from the content above */
+        margin: 0 10px; /* Side margins for breathing room */
+    }
+}
 
 
 /* Navbar styles */
