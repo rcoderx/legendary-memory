@@ -50,13 +50,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-@media only screen and (max-width: 768px) {
-    #leaderboard {
-        width: 90%; /* Make it occupy the majority of the screen width */
-        margin: 10px auto 20px; /* Center it and provide space around */
-        padding: 15px; /* Adjust padding for visibility */
-    }
-}
+
 
 
 #twitterShareBtn, #submitTwitterLinkBtn {
@@ -115,22 +109,6 @@ button:hover {
     color: #333; /* Text color */
 }
 
-@media only screen and (max-width: 768px) {
-    #twitterShareBtn, #submitTwitterLinkBtn {
-        width: auto; /* Let it size according to content */
-        margin: 10px auto; /* Center and provide space between buttons */
-        padding: 12px 20px; /* Padding for easier interaction */
-        display: block; /* Stack buttons vertically */
-    }
-}
-@media only screen and (max-width: 768px) {
-    #twitterLinkInput {
-        width: 80%; /* Adjust width to prevent overflow */
-        margin: 10px auto; /* Center it and provide vertical space */
-        padding: 12px; /* Make it easy to interact with */
-        display: block; /* Ensure it's on its own line */
-    }
-}
 
 
 
@@ -248,18 +226,7 @@ position:absolute;
     /*... other styles ...*/
 }
 
-/* Media Query for Mobile Devices */
-@media only screen and (max-width: 768px) {
-    .social-links a {
-        margin: 0 5px; /* Adjust spacing between icons */
-        padding: 10px; /* Padding around icons for easier tapping */
-        display: inline-block; /* Ensure they line up horizontally */
-    }
-    .social-links {
-        justify-content: center; /* Center the links container */
-        flex-wrap: wrap; /* Allow icons to wrap to next line if space is constrained */
-    }
-}
+
 
 
 .credits a {
@@ -277,12 +244,42 @@ position:absolute;
     /*... other styles ...*/
 }
 
-/* Media Query for Mobile Devices */
 @media only screen and (max-width: 768px) {
-    .credits {
-        font-size: 12px; /* Adjust font size for readability */
-        margin: 20px 0; /* Provide vertical space above and below */
-        text-align: center; /* Center-align the text */
+    /* Allow body to grow based on content, making the background scrollable */
+    body {
+        min-height: 100vh; /* Ensure it's at least the height of the viewport */
+        height: auto; /* Adjust height based on content */
+        background-attachment: scroll; /* Allow background to scroll with the content */
+    }
+
+    /* Heading h1 - Center and space out */
+    h1 {
+        font-size: 24px; /* Adjust font size for smaller screens */
+        margin: 20px 0; /* Provide space from top and bottom */
+        padding: 0 10px; /* Ensure text doesn't touch the edges */
+    }
+
+    /* Leaderboard Section - Center and space out */
+    #leaderboard {
+        width: 90%; /* Make it occupy the majority of the screen width */
+        margin: 10px auto; /* Center it with auto margins and provide vertical spacing */
+        padding: 10px; /* Adjust padding for visibility */
+    }
+
+    /* Twitter Share and Submit Buttons - Ensure they are easily tappable and spaced */
+    #twitterShareBtn, #submitTwitterLinkBtn {
+        width: auto; /* Let it size according to content */
+        margin: 10px auto; /* Center and provide space between buttons */
+        padding: 12px 20px; /* Padding for easier interaction */
+        display: block; /* Stack buttons vertically */
+    }
+
+    /* Twitter Link Input - Ensure it is easily tappable and doesn't overflow */
+    #twitterLinkInput {
+        width: 80%; /* Adjust width to fit mobile screen */
+        margin: 10px auto; /* Center and provide vertical space */
+        padding: 12px; /* Make it easy to interact with */
+        display: block; /* Ensure it's on its own line */
     }
 }
 
